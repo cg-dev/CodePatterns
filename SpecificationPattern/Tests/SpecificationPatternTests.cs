@@ -10,26 +10,26 @@
     [TestFixture]
     public class SpecificationPatternTests
     {
-        private World World;
+        private World _world;
 
-        private ISpecification<Country> EnglishSpeaking;
-        private ISpecification<Country> European;
-        private ISpecification<Country> InEuroZone;
+        private ISpecification<Country> _englishSpeaking;
+        private ISpecification<Country> _european;
+        private ISpecification<Country> _inEuroZone;
 
         [SetUp]
         public void SetUp()
         {
-            this.World = new World();
+            this._world = new World();
 
-            this.EnglishSpeaking = new ExpressionSpecification<Country>(c => c.Language == "English");
-            this.European = new ExpressionSpecification<Country>(c => c.Continent == "Europe");
-            this.InEuroZone = new ExpressionSpecification<Country>(c => c.Currency == "EUR");
+            _englishSpeaking = new ExpressionSpecification<Country>(c => c.Language == "English");
+            _european = new ExpressionSpecification<Country>(c => c.Continent == "Europe");
+            _inEuroZone = new ExpressionSpecification<Country>(c => c.Currency == "EUR");
         }
 
         [Test]
         public void TheSpecificationPatternShouldReturnCorrectItemsWhenASingleSpecificationIsUsed()
         {
-            var result = this.World.Countries.FindAll(this.EnglishSpeaking.IsSatisfiedBy);
+            var result = _world.Countries.FindAll(_englishSpeaking.IsSatisfiedBy);
 
             Assert.AreEqual(4, result.Count());
         }
@@ -37,7 +37,7 @@
         [Test]
         public void TheSpecificationPatternShouldReturnCorrectItemsWhenAndSpecificationIsUsed()
         {
-            var result = this.World.Countries.FindAll(this.EnglishSpeaking.And(this.European).IsSatisfiedBy);
+            var result = _world.Countries.FindAll(_englishSpeaking.And(_european).IsSatisfiedBy);
 
             Assert.AreEqual(1, result.Count());
         }
@@ -45,7 +45,7 @@
         [Test]
         public void TheSpecificationPatternShouldReturnCorrectItemsWhenOrSpecificationIsUsed()
         {
-            var result = this.World.Countries.FindAll(this.EnglishSpeaking.Or(this.European).IsSatisfiedBy);
+            var result = _world.Countries.FindAll(_englishSpeaking.Or(_european).IsSatisfiedBy);
 
             Assert.AreEqual(7, result.Count());
         }
@@ -53,7 +53,7 @@
         [Test]
         public void TheSpecificationPatternShouldReturnCorrectItemsWhenNotSpecificationIsUsed()
         {
-            var result = this.World.Countries.FindAll(this.EnglishSpeaking.Not(European).IsSatisfiedBy);
+            var result = _world.Countries.FindAll(_englishSpeaking.Not(_european).IsSatisfiedBy);
 
             Assert.AreEqual(3, result.Count());
         }
@@ -61,7 +61,7 @@
         [Test]
         public void TheSpecificationPatternShouldReturnCorrectItemsWhenAndOrAondNotSpecificationAreUsed()
         {
-            var result = this.World.Countries.FindAll(this.EnglishSpeaking.And(European).Or(this.European.Not(this.InEuroZone)).IsSatisfiedBy);
+            var result = _world.Countries.FindAll(_englishSpeaking.And(_european).Or(_european.Not(_inEuroZone)).IsSatisfiedBy);
 
             Assert.AreEqual(2, result.Count());
         }
