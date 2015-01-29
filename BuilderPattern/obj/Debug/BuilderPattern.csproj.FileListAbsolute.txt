@@ -5,3 +5,5 @@ D:\Git\CodePatterns\BuilderPattern\bin\Debug\nunit.framework.xml
 D:\Git\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.csprojResolveAssemblyReference.cache
 D:\Git\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.dll
 D:\Git\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.pdb
+D:\Git\CodePatterns\BuilderPattern\bin\Debug\SpecificationPattern.dll
+D:\Git\CodePatterns\BuilderPattern\bin\Debug\SpecificationPattern.pdb

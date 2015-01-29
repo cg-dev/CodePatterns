@@ -42,14 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pattern\CountryBuilder.cs" />
     <Compile Include="Tests\BuilderPatternTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Pattern\" />
+    <ProjectReference Include="..\SpecificationPattern\SpecificationPattern.csproj">
+      <Project>{d028c35e-c2c1-443e-a611-505e41fa72fa}</Project>
+      <Name>SpecificationPattern</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

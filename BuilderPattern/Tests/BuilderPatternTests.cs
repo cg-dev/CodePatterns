@@ -1,32 +1,56 @@
-﻿using NUnit.Framework;
+﻿using BuilderPattern.Pattern;
+using NUnit.Framework;
 
 namespace BuilderPattern.Tests
 {
     [TestFixture]
     public class BuilderPatternTests
     {
+        private const string testName = "Brazil";
+        private const string testContinent = "South America";
+        private const string testCurrency = "BRL";
+        private const string testLanguage = "Portugese";
+        private const string defaultString = "Default";
+
+        private CountryBuilder _builder;
+
         [SetUp]
         public void SetUp()
         {
-            
+            _builder = new CountryBuilder();
         }
 
         [Test]
         public void TheBuilderPatternShouldReturnADefaultObjectIfNoValuesAreProvided()
         {
-            Assert.IsTrue(false);
+            var country = _builder.Build();
+
+            Assert.AreEqual("Default", country.Name);
+            Assert.AreEqual("Default", country.Continent);
+            Assert.AreEqual("Default", country.Currency);
+            Assert.AreEqual("Default", country.Language);
         }
 
         [Test]
         public void TheBuilderPatternShouldReturnAnObjectWithDefaultsAndValuesIfSomeValuesAreProvided()
         {
-            Assert.IsTrue(false);
+            var country = _builder.WithName(testName).WithLanguage(testLanguage).Build();
+
+            Assert.AreEqual(testName, country.Name);
+            Assert.AreEqual(defaultString, country.Continent);
+            Assert.AreEqual(defaultString, country.Currency);
+            Assert.AreEqual(testLanguage, country.Language);
         }
 
         [Test]
         public void TheBuilderPatternShouldReturnAnObjectWithNoDefaultValuesIfAllValuesAreProvided()
         {
-            Assert.IsTrue(false);
+            var country = _builder.WithName(testName).WithLanguage(testLanguage).WithContinent(testContinent).WithCurrency(testCurrency).Build();
+
+            Assert.AreEqual(testName, country.Name);
+            Assert.AreEqual(testContinent, country.Continent);
+            Assert.AreEqual(testCurrency, country.Currency);
+            Assert.AreEqual(testLanguage, country.Language);
         }
     }
 }
