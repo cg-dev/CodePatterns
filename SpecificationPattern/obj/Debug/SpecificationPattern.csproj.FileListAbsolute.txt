@@ -1,0 +1,14 @@
+D:\Dropbox\Sample\SpecificationPattern\bin\Debug\SpecificationPattern.dll
+D:\Dropbox\Sample\SpecificationPattern\bin\Debug\SpecificationPattern.pdb
+D:\Dropbox\Sample\SpecificationPattern\bin\Debug\nunit.framework.dll
+D:\Dropbox\Sample\SpecificationPattern\bin\Debug\nunit.framework.xml
+D:\Dropbox\Sample\SpecificationPattern\obj\Debug\SpecificationPattern.csprojResolveAssemblyReference.cache
+D:\Dropbox\Sample\SpecificationPattern\obj\Debug\SpecificationPattern.dll
+D:\Dropbox\Sample\SpecificationPattern\obj\Debug\SpecificationPattern.pdb
+D:\Git\CodePatterns\SpecificationPattern\bin\Debug\SpecificationPattern.dll
+D:\Git\CodePatterns\SpecificationPattern\bin\Debug\SpecificationPattern.pdb
+D:\Git\CodePatterns\SpecificationPattern\bin\Debug\nunit.framework.dll
+D:\Git\CodePatterns\SpecificationPattern\bin\Debug\nunit.framework.xml
+D:\Git\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.csprojResolveAssemblyReference.cache
+D:\Git\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.dll
+D:\Git\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.pdb
