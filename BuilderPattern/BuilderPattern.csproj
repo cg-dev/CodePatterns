@@ -49,11 +49,10 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\SpecificationPattern\SpecificationPattern.csproj">
-      <Project>{d028c35e-c2c1-443e-a611-505e41fa72fa}</Project>
-      <Name>SpecificationPattern</Name>
+    <ProjectReference Include="..\CodePatterns\CodePatterns.csproj">
+      <Project>{124018e9-5ac0-4ef8-8c59-119ab7c88c2b}</Project>
+      <Name>CodePatterns</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

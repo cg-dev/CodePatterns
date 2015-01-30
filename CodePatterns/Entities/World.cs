@@ -1,8 +1,8 @@
-﻿namespace SpecificationPattern.Entities
+﻿namespace CodePatterns.Entities
 {
     using System.Collections.Generic;
 
-    class World
+    public class World
     {
 
         private readonly List<Country> countries;

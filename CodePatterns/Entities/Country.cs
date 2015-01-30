@@ -1,4 +1,4 @@
-﻿namespace SpecificationPattern
+﻿namespace CodePatterns.Entities
 {
     public class Country
     {

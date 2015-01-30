@@ -2,9 +2,10 @@
 {
     using System.Linq;
 
+    using CodePatterns.Entities;
+
     using NUnit.Framework;
 
-    using SpecificationPattern.Entities;
     using SpecificationPattern.Interfaces;
 
     [TestFixture]
