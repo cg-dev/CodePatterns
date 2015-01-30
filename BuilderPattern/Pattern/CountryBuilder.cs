@@ -1,7 +1,7 @@
-﻿using SpecificationPattern;
-
-namespace BuilderPattern.Pattern
+﻿namespace BuilderPattern.Pattern
 {
+    using CodePatterns.Entities;
+
     public class CountryBuilder
     {
         private readonly Country _country;
