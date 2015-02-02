@@ -39,7 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\ChequeAccount.cs" />
     <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\CreditCardAccount.cs" />
+    <Compile Include="Entities\SavingsAccount.cs" />
     <Compile Include="Entities\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

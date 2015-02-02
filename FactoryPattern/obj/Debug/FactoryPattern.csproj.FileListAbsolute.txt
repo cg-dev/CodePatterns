@@ -6,3 +6,4 @@ D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.pdb
 D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\nunit.framework.xml
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.dll
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.pdb
+D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.csprojResolveAssemblyReference.cache
