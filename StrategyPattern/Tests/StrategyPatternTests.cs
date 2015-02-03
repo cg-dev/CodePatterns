@@ -10,14 +10,41 @@ namespace StrategyPattern.Tests
         [Test]
         public void StrategySortShouldPerformTheCorrectSortForTheStrategyPassedToIt()
         {
-            var world = new World();
-            var sortedList = new SortedList();
+            var sortStrategy = new AscendingByName();
 
-            var sortStrategy = SortStrategy(new AscendingSort);
+            var result = sortStrategy.Sort(new World().Countries);
 
-            var result = sortedList.Sort(world.Countries.ToArray());
+            Assert.Less(result[0].Name, result[result.Count - 1].Name);
+        }
+        
+        [Test]
+        public void StrategySortShouldPerformTheCorrectSortForTheDescendingStrategy()
+        {
+            var sortStrategy = new DescendingByName();
 
-            Assert.AreEqual("Sorted ascending", result);
+            var result = sortStrategy.Sort(new World().Countries);
+
+            Assert.Less(result[result.Count - 1].Name, result[0].Name);
+        }    
+    
+        [Test]
+        public void StrategySortShouldPerformTheCorrectSortForTheAscendingByCurrencyStrategy()
+        {
+            var sortStrategy = new AscendingByCurrency();
+
+            var result = sortStrategy.Sort(new World().Countries);
+
+            Assert.Less(result[0].Currency, result[result.Count - 1].Currency);
+        }    
+
+        [Test]
+        public void StrategySortShouldPerformTheCorrectSortForTheDescendingByCurrencyStrategy()
+        {
+            var sortStrategy = new DescendingByCurrency();
+
+            var result = sortStrategy.Sort(new World().Countries);
+
+            Assert.Less(result[result.Count - 1].Currency, result[0].Currency);
         }
     }
 }

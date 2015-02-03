@@ -2,8 +2,10 @@
 
 namespace StrategyPattern.Pattern
 {
+    using CodePatterns.Entities;
+
     public abstract class SortStrategy
     {
-        public abstract string Sort(List<string> list);
+        public abstract List<Country> Sort(List<Country> list);
     }
 }

@@ -3,6 +3,8 @@ using StrategyPattern.Pattern;
 
 namespace StrategyPattern.Tests
 {
+    using CodePatterns.Entities;
+
     public class SortedList
     {
         private SortStrategy _sortStrategy;
@@ -12,7 +14,7 @@ namespace StrategyPattern.Tests
             _sortStrategy = sortStrategy;
         }
 
-        public string Sort(List<string> unsortedList)
+        public List<Country> Sort(List<Country> unsortedList)
         {
             return _sortStrategy.Sort(unsortedList);
         }
