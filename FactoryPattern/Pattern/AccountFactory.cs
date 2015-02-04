@@ -2,22 +2,25 @@
 {
     using CodePatterns.Entities;
 
+    using FactoryPattern.Tests;
+
     public static class AccountFactory
     {
-        public static Account Create(int accountType)
+        public static Account Create(AccountTypes accountType)
         {
             switch (accountType)
             {
-                case 1:
+                case AccountTypes.ChequeAccount:
                     return new ChequeAccount();
                     break;
-                case 2:
+                case AccountTypes.CreditCardAccount:
                     return new CreditCardAccount();
                     break;
-                default:
+                case AccountTypes.SavingsAccount:
                     return new SavingsAccount();
                     break;
             }
+            return null;
         }
     }
 }

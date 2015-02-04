@@ -1,5 +1,7 @@
 ﻿namespace FactoryPattern.Tests
 {
+    using System;
+
     using CodePatterns.Entities;
 
     using FactoryPattern.Pattern;
@@ -9,14 +11,14 @@
     [TestFixture]
     class FactoryPatternTests
     {
-        [Test]
-        public void TheFactoryPatternShouldReturnANewObjectOfTheTypeThatIsRequested()
+        [TestCase(AccountTypes.ChequeAccount, typeof(ChequeAccount))]
+        [TestCase(AccountTypes.CreditCardAccount, typeof(CreditCardAccount))]
+        [TestCase(AccountTypes.SavingsAccount, typeof(SavingsAccount))]
+        public void TheFactoryPatternShouldReturnANewObjectOfTheTypeThatIsRequested(AccountTypes accountType, Type type)
         {
-            var result = AccountFactory.Create(2);
+            var result = AccountFactory.Create(accountType);
 
-            Assert.IsFalse(result.GetType() == typeof(ChequeAccount));
-            Assert.IsTrue(result.GetType() == typeof(CreditCardAccount));
-            Assert.IsFalse(result.GetType() == typeof(SavingsAccount));
+            Assert.IsTrue(result.GetType() == type);
         }
     }
 }
