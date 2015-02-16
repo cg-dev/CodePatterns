@@ -11,15 +11,15 @@
             _country = new Country
                 {
                     Name = "Default",
-                    Continent = "Default",
+                    Continent = new Continent{ Id = 1, Name = "Default" },
                     Currency = "Default",
                     Language = "Default"
                 };
         }
 
-        public CountryBuilder WithContinent(string continent)
+        public CountryBuilder WithContinent(int id, string name)
         {
-            _country.Continent = continent;
+            _country.Continent = new Continent{ Id = id, Name = name };
             return this;
         }
 

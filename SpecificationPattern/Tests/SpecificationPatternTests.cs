@@ -23,7 +23,7 @@
             this._world = new World();
 
             _englishSpeaking = new ExpressionSpecification<Country>(c => c.Language == "English");
-            _european = new ExpressionSpecification<Country>(c => c.Continent == "Europe");
+            _european = new ExpressionSpecification<Country>(c => c.Continent.Name == "Europe");
             _inEuroZone = new ExpressionSpecification<Country>(c => c.Currency == "EUR");
         }
 
