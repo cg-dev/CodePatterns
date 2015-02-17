@@ -10,11 +10,14 @@
 
         public string Currency { get; set; }
 
-        public string Continent { get; set; }
+        //public string Continent { get; set; }
 
         public int CompareTo(Country other)
         {
             return this.Name.CompareTo(other.Name);
         }
+
+        public int CountryId { get; set; }
+        public virtual Continent Continent { get; set; }
     }
 }

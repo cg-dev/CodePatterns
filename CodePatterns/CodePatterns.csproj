@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\ChequeAccount.cs" />
+    <Compile Include="Entities\Continent.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\CreditCardAccount.cs" />
     <Compile Include="Entities\SavingsAccount.cs" />
