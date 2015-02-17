@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        using (var db = new EntityDataModel())
+        using (var db = new EntityFrameworkContext())
         {
             // Create and save a new continent 
             Console.Write("Enter a name for a new continent: ");
