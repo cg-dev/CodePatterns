@@ -9,8 +9,8 @@
     [TestFixture]
     public class EntityFrameworkTests
     {
-        [SetUp]
-        public void SetUp()
+        [TearDown]
+        public void TearDown()
         {
             using (var db = new EntityFrameworkContext())
             {
@@ -18,8 +18,13 @@
                 foreach (var continent in continents)
                 {
                     db.Continents.Remove(continent);
-                    db.SaveChanges();
                 }
+                var countries = db.Countries.Where(c => c.Name.ToLower().Contains("country"));
+                foreach (var country in countries)
+                {
+                    db.Countries.Remove(country);
+                }
+                db.SaveChanges();
             }
         }
 
@@ -47,6 +52,39 @@
                 Assert.AreEqual(1, db.SaveChanges());
 
                 Assert.AreEqual(0, db.Continents.Select(c => c.Name.ToLower().Contains("continent")).Count());
+            }
+        }
+
+
+        [Test]
+        public void EntityFrameworkShouldAddUpdateAndDeleteACountryInTheDatabase()
+        {
+            using (var db = new EntityFrameworkContext())
+            {
+                var newContinent = new Continent { Name = "New continent" };
+                db.Continents.Add(newContinent);
+                db.SaveChanges();
+
+
+                var newCountry = new Country { Name = "New country" };
+                db.Countries.Add(newCountry);
+                Assert.AreEqual(1, db.SaveChanges());
+
+                var countryId = db.Countries.Single(c => c.Name == "New country").CountryId;
+
+                Assert.AreEqual(countryId, db.Countries.Single(c => c.Name == "New country").CountryId);
+
+                var updateCountry = db.Countries.Single(c => c.CountryId == countryId);
+                updateCountry.Name = "Updated country";
+                Assert.AreEqual(1, db.SaveChanges());
+
+                Assert.AreEqual(countryId, db.Countries.Single(c => c.Name == "Updated country").CountryId);
+
+                var removeCountry = db.Countries.Single(c => c.CountryId == countryId);
+                db.Countries.Remove(removeCountry);
+                Assert.AreEqual(1, db.SaveChanges());
+
+                Assert.AreEqual(0, db.Countries.Select(c => c.Name.ToLower().Contains("country")).Count());
             }
         }
     }
