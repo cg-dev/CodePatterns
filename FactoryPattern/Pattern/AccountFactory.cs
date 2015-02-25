@@ -12,13 +12,10 @@
             {
                 case AccountTypes.ChequeAccount:
                     return new ChequeAccount();
-                    break;
                 case AccountTypes.CreditCardAccount:
                     return new CreditCardAccount();
-                    break;
                 case AccountTypes.SavingsAccount:
                     return new SavingsAccount();
-                    break;
             }
             return null;
         }

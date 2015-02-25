@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Index Page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body ng-app="">
+    <div ng-controller="VolumeCalculator">
+        Enter measurements for a cuboid
+        Height: <input ng-model="height" />
+        Width: <input ng-model="width" />
+        Depth: <input ng-model="depth" /><br />
+        Volume = {{ volume() }}
+    </div>
+    <hr />
+    <div ng-controller="CountryController">
+        <button ng-click="toggleSortOrder()">Toggle sort order</button>
+        <table border="1px solid">
+            <tr ng-repeat="x in names | orderBy: sortOrder">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+    function VolumeCalculator($scope) {
+        $scope.volume = function () {
+            if ($scope.height && $scope.width && $scope.depth) {
+                return $scope.height * $scope.width * $scope.depth;
+            } else {
+                return "Missing at least one value";
+            };
+        }
+    }
+
+    function CountryController($scope, $http) {
+        $http.get("http://www.w3schools.com/website/Customers_JSON.php").success(function (response) { $scope.names = response; });
+        $scope.sortOrder = "Name";
+        $scope.toggleSortOrder = function () {
+            if ($scope.sortOrder === "Name") {
+                $scope.sortOrder = "Country";
+            } else {
+                $scope.sortOrder = "Name";
+            }
+        }
+    }
+</script>
