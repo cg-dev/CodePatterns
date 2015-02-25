@@ -16,3 +16,8 @@ D:\SourceTree\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.dll
 D:\SourceTree\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.pdb
 D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.dll
 D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.pdb
+D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.ldf
+D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.mdf
+D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\CodePatterns_log.ldf
+D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\EntityFramework.dll
+D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\EntityFramework.xml

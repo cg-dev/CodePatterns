@@ -4,7 +4,7 @@ namespace StrategyPattern.Pattern
 {
     using System.Linq;
 
-    using CodePatterns.Entities;
+    using CodePatterns.Model;
 
     public class DescendingByCurrency : SortStrategy
     {

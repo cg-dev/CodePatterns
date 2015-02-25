@@ -2,15 +2,15 @@
 
 namespace StrategyPattern.Pattern
 {
-    using CodePatterns.Entities;
+    using System.Linq;
+
+    using CodePatterns.Model;
 
     public class AscendingByName : SortStrategy
     {
         public override List<Country> Sort(List<Country> list)
         {
-          list.Sort();
-
-          return list;
+            return list.OrderBy(c => c.Name).ToList();
         }
     }
 }

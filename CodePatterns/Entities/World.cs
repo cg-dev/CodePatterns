@@ -2,9 +2,10 @@
 {
     using System.Collections.Generic;
 
+    using CodePatterns.Model;
+
     public class World
     {
-
         private readonly List<Country> countries;
 
         public List<Country> Countries

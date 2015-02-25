@@ -2,7 +2,7 @@
 
 namespace StrategyPattern.Pattern
 {
-    using CodePatterns.Entities;
+    using CodePatterns.Model;
 
     public abstract class SortStrategy
     {

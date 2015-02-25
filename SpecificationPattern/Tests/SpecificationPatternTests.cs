@@ -3,6 +3,7 @@
     using System.Linq;
 
     using CodePatterns.Entities;
+    using CodePatterns.Model;
 
     using NUnit.Framework;
 

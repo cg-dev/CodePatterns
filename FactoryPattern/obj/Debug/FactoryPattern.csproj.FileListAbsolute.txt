@@ -7,3 +7,8 @@ D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\nunit.framework.xml
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.dll
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.pdb
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.csprojResolveAssemblyReference.cache
+D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.ldf
+D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.mdf
+D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\CodePatterns_log.ldf
+D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\EntityFramework.dll
+D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\EntityFramework.xml

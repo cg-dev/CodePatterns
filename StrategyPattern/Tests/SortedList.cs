@@ -3,7 +3,7 @@ using StrategyPattern.Pattern;
 
 namespace StrategyPattern.Tests
 {
-    using CodePatterns.Entities;
+    using CodePatterns.Model;
 
     public class SortedList
     {

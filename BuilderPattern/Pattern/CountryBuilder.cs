@@ -1,6 +1,6 @@
 ﻿namespace BuilderPattern.Pattern
 {
-    using CodePatterns.Entities;
+    using CodePatterns.Model;
 
     public class CountryBuilder
     {

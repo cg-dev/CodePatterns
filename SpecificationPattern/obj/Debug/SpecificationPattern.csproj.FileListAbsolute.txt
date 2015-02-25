@@ -21,3 +21,8 @@ D:\SourceTree\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.d
 D:\SourceTree\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.pdb
 D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.dll
 D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.pdb
+D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.ldf
+D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.mdf
+D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns_log.ldf
+D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\EntityFramework.dll
+D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\EntityFramework.xml
