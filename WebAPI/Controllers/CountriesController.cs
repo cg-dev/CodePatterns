@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web.Http;
-
-namespace Angular.Controllers
+﻿namespace WebAPI.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Http;
+
     using CodePatterns.Model;
 
     public class CountriesController : ApiController
@@ -14,7 +13,7 @@ namespace Angular.Controllers
 
         public CountriesController()
         {
-            _countries = new List<Country>{
+            this._countries = new List<Country>{
                     new Country {Id = 1, Name = "England"},
                     new Country {Id = 2, Name = "Wales"},
                     new Country {Id = 3, Name = "Scotland"},
@@ -27,13 +26,15 @@ namespace Angular.Controllers
         // GET api/<controller>
         public IEnumerable<Country> Get()
         {
-            return _countries;
+            var returnValues = this._countries;
+
+            return returnValues;
         }
 
         // GET api/<controller>/5
         public Country Get(int id)
         {
-            var country = _countries.SingleOrDefault(c => c.Id == id);
+            var country = this._countries.SingleOrDefault(c => c.Id == id);
 
             if (country != null)
             {

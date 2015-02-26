@@ -9,16 +9,17 @@
             border-collapse: collapse;
             padding: 5px;
         }
-        table tr:nth-child(odd) {
-            background-color: #f1f1f1;
-        }
 
-        table tr:nth-child(even) {
-            background-color: #ffffff;
-        }
+            table tr:nth-child(odd) {
+                background-color: #f1f1f1;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
     </style>
 </head>
-<body ng-app="">
+<body ng-app="MyApp">
     <div ng-controller="VolumeCalculator">
         Enter measurements for a cuboid
         Height: <input ng-model="height" />
@@ -29,7 +30,7 @@
     <hr />
 
     <div ng-controller="CountryController">
-        <table border="1px solid">
+        <table border="1">
             <tr><td colspan="2">Currently sorted by {{sortOrder}} - <button ng-click="toggleSortOrder()">Toggle sort order</button></td></tr>
             <tr ng-repeat="x in names | orderBy: sortOrder">
                 <td>{{ x.Name }}</td>
@@ -37,20 +38,25 @@
             </tr>
         </table>
     </div>
-    <hr/>    
+    <hr />
 
-    <div ng-controller="CountriesController">
-    <strong class="error">{{ error }}</strong>
-    <strong ng-show="loading">loading..</strong>
-        <div ng-repeat="country in countries">
-            Id: {{country.Id}}, Name: {{Country.Name}}
+    <div ng-controller="countriesController">
+        <strong class="error">{{ error }}</strong>
+        <strong ng-show="loading">loading..</strong>
+        <div ng-repeat="c in countries">
+            Id: {{c.Id}}, Name: {{c.Name}}
         </div>
-</div>
-
+        {{allDone}}
+    </div>
 </body>
 </html>
 
 <script>
+    (function() {
+        angular
+            .module('CountriesController', CountriesController);
+    });
+
     function VolumeCalculator($scope) {
         $scope.volume = function () {
             if ($scope.height && $scope.width && $scope.depth) {
@@ -59,30 +65,26 @@
                 return "Missing at least one value";
             }
         };
-    }
+    };
 
     function CountryController($scope, $http) {
-        $http.get("http://www.w3schools.com/website/Customers_JSON.php").success(function (response) { $scope.names = response; });
+        $http.get("http://www.w3schools.com/website/Customers_JSON.php")
+            .success(function (response) { $scope.names = response; });
         $scope.sortOrder = "Name";
-        $scope.toggleSortOrder = function() {
+        $scope.toggleSortOrder = function () {
             if ($scope.sortOrder === "Name") {
                 $scope.sortOrder = "Country";
             } else {
                 $scope.sortOrder = "Name";
             }
         };
-    }
+    };
 
-    function CountriesController($scope, $http) {
-        $scope.loading = true;
-        $http.get('/api/Countries/')
-            .success(function(data) {
-                $scope.countries = data;
-                $scope.loading = false;
-            })
-            .error(function() {
-                $scope.error = "An Error has occured while loading countries!";
-                $scope.loading = false;
-            });
-    }
+    //function CountriesController($scope, $http) {
+    //    $scope.loading = true;
+    //    $http.get("api/countries")
+    //        .success(function(response) { $scope.countries = response; });
+    //    $scope.loading = false;
+    //    $scope.allDone = "All done happily!";
+    //};
 </script>

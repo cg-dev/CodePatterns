@@ -10,3 +10,4 @@ D:\SourceTree\CodePatterns\CodePatterns\bin\Debug\EntityFramework.xml
 D:\SourceTree\CodePatterns\CodePatterns\bin\Debug\EntityFramework.SqlServer.xml
 D:\SourceTree\CodePatterns\CodePatterns\obj\Debug\CodePatterns.dll
 D:\SourceTree\CodePatterns\CodePatterns\obj\Debug\CodePatterns.pdb
+D:\SourceTree\CodePatterns\CodePatterns\obj\Debug\CodePatterns.csprojResolveAssemblyReference.cache
