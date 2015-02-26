@@ -27,15 +27,26 @@
         Volume = {{ volume() }}
     </div>
     <hr />
+
     <div ng-controller="CountryController">
-        <button ng-click="toggleSortOrder()">Toggle sort order</button>
         <table border="1px solid">
+            <tr><td colspan="2">Currently sorted by {{sortOrder}} - <button ng-click="toggleSortOrder()">Toggle sort order</button></td></tr>
             <tr ng-repeat="x in names | orderBy: sortOrder">
                 <td>{{ x.Name }}</td>
                 <td>{{ x.Country }}</td>
             </tr>
         </table>
     </div>
+    <hr/>    
+
+    <div ng-controller="CountriesController">
+    <strong class="error">{{ error }}</strong>
+    <strong ng-show="loading">loading..</strong>
+        <div ng-repeat="country in countries">
+            Id: {{country.Id}}, Name: {{Country.Name}}
+        </div>
+</div>
+
 </body>
 </html>
 
@@ -46,19 +57,32 @@
                 return $scope.height * $scope.width * $scope.depth;
             } else {
                 return "Missing at least one value";
-            };
-        }
+            }
+        };
     }
 
     function CountryController($scope, $http) {
         $http.get("http://www.w3schools.com/website/Customers_JSON.php").success(function (response) { $scope.names = response; });
         $scope.sortOrder = "Name";
-        $scope.toggleSortOrder = function () {
+        $scope.toggleSortOrder = function() {
             if ($scope.sortOrder === "Name") {
                 $scope.sortOrder = "Country";
             } else {
                 $scope.sortOrder = "Name";
             }
-        }
+        };
+    }
+
+    function CountriesController($scope, $http) {
+        $scope.loading = true;
+        $http.get('/api/Countries/')
+            .success(function(data) {
+                $scope.countries = data;
+                $scope.loading = false;
+            })
+            .error(function() {
+                $scope.error = "An Error has occured while loading countries!";
+                $scope.loading = false;
+            });
     }
 </script>

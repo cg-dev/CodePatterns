@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0DA001DF-EBEC-49AE-9EED-36EDB38C3FD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern", "SpecificationPattern\SpecificationPattern.csproj", "{D028C35E-C2C1-443E-A611-505E41FA72FA}"
@@ -18,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{09236E51-75A9-4611-AFAD-0F210269D541}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{807F35A3-6378-47F4-A811-018A8C13969B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +53,10 @@ Global
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{807F35A3-6378-47F4-A811-018A8C13969B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807F35A3-6378-47F4-A811-018A8C13969B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807F35A3-6378-47F4-A811-018A8C13969B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807F35A3-6378-47F4-A811-018A8C13969B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
