@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="angularApp" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <script src="Scripts/jquery-1.9.1.js"></script>
     <script src="Scripts/angular.js"></script>
@@ -23,12 +23,20 @@
             }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div ng-view></div>
-    </div>
-    <div>
-        [EventLog: {{eventLog}}]
-    </div>
-</body>
+    <body ng-app="angularApp">
+        <table class='table table-striped table-condensed table-hover'>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody ng-controller="ListCtrl">
+                <tr ng-repeat='Country in Countries'>
+                    <td>{{Country.Id}}</td>
+                    <td>{{Country.Name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
 </html>

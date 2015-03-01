@@ -1,12 +1,13 @@
-﻿namespace WebAPI.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using CodePatterns.Model;
+
+namespace WebAPI.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Http;
-
-    using CodePatterns.Model;
-
     public class CountriesController : ApiController
     {
         private List<Country> _countries;
@@ -26,9 +27,7 @@
         // GET api/<controller>
         public IEnumerable<Country> Get()
         {
-            var returnValues = this._countries;
-
-            return returnValues;
+            return this._countries;
         }
 
         // GET api/<controller>/5

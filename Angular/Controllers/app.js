@@ -1,16 +1,11 @@
-﻿var angularApp = angular.module('angularApp', ['ngRoute', 'ngResource']).
-    config(function($routeProvider) {
-        $routeProvider.
-            when('/', { controller: ListCtrl, templateUrl: 'list.html' }).
-            otherwise({ redirectTo: '/' });
+﻿var app = angular.module("angularApp", ['ngRoute', 'ngResource']);
+
+app.controller("ListCtrl", function ($scope, $http) {
+    $http.get('http://localhost:49679/api/countries')
+        .success(function(data) {
+            $scope.Countries = data;
+        })
+    .error(function(data) {
+        alert(data);
     });
-
-angularApp.factory('angularApp', function ($scope, $resource) {
-    $scope.eventLog = eventLog & "angularApp called.";
-    return $resource('/api/countries/', { update: { method: 'PUT' } });
 });
-
-var ListCtrl = function($scope, $location, angularApp) {
-    $scope.eventLog = eventLog & "ListCtrl called.";
-    $scope.countries = angularApp.query();
-}

@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{807F35A3-6378-47F4-A811-018A8C13969B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{807F35A3-6378-47F4-A811-018A8C13969B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{807F35A3-6378-47F4-A811-018A8C13969B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{807F35A3-6378-47F4-A811-018A8C13969B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{807F35A3-6378-47F4-A811-018A8C13969B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
