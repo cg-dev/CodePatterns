@@ -83,10 +83,8 @@
     <Content Include="Controllers\countriesController.js" />
     <Content Include="Controllers\countryController.js" />
     <Content Include="Controllers\volumeCalculatorController.js" />
-    <Content Include="dumpingGround.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Index.html" />
-    <Content Include="list.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />

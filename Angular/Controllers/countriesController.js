@@ -1,12 +1,9 @@
-﻿(function() {
-    'use strict';
-    angular
-        .module('demoApp')
-        .controller('countriesController', countriesController);
-
-    countriesController.$inject = ['$scope', 'Countries'];
-
-    function countriesController($scope, Countries) {
-        $scope.Countries = Countries.query();
-    }
-})();
+﻿app.controller("CountriesController", function ($scope, $http) {
+    $http.get('http://localhost:49679/api/countries')
+        .success(function (data) {
+            $scope.Countries = data;
+        })
+        .error(function (data) {
+            alert(data);
+        });
+});

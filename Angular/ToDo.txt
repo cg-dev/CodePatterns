@@ -1,1 +1,3 @@
 ﻿Replace ngRoute and $routeProvider
+Use ng-view
+Get local API to run
