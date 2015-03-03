@@ -892,6 +892,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodePatterns\CodePatterns.csproj">
+      <Project>{124018e9-5ac0-4ef8-8c59-119ab7c88c2b}</Project>
+      <Name>CodePatterns</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPI\WebAPI.csproj">
+      <Project>{ddaf2309-ae8d-44ae-b5c8-a6f78fe3e53c}</Project>
+      <Name>WebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
