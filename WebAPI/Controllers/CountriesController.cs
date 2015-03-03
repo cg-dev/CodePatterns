@@ -25,7 +25,9 @@ namespace WebAPI.Controllers
         // GET api/<controller>
         public IEnumerable<Country> Get()
         {
-            return this._countries;
+            var retVal = this._countries;
+
+            return retVal;
         }
 
         // GET api/<controller>/5
