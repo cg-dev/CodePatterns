@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0DA001DF-EBEC-49AE-9EED-36EDB38C3FD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern", "SpecificationPattern\SpecificationPattern.csproj", "{D028C35E-C2C1-443E-A611-505E41FA72FA}"
@@ -17,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategyPattern", "Strategy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{09236E51-75A9-4611-AFAD-0F210269D541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryServices", "QueryServices\QueryServices.csproj", "{1EE3DDA6-82D6-4072-8D28-3B4CE3A971CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,14 +49,14 @@ Global
 		{09236E51-75A9-4611-AFAD-0F210269D541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09236E51-75A9-4611-AFAD-0F210269D541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09236E51-75A9-4611-AFAD-0F210269D541}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF2672DF-F258-4FFB-9EB2-ADA06C2CA84F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDAF2309-AE8D-44AE-B5C8-A6F78FE3E53C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE3DDA6-82D6-4072-8D28-3B4CE3A971CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE3DDA6-82D6-4072-8D28-3B4CE3A971CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE3DDA6-82D6-4072-8D28-3B4CE3A971CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE3DDA6-82D6-4072-8D28-3B4CE3A971CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

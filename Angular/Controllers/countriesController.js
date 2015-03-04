@@ -1,6 +1,6 @@
 ﻿app.controller("CountriesController", function ($scope, $http) {
     $http
-        .get('http://localhost:33651/api/NewCountry')
+        .get("/api/Country/")
         .success(function (data) {
             $scope.Countries = data;
         })
