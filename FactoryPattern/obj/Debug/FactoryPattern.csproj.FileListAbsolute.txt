@@ -12,3 +12,17 @@ D:\SourceTree\CodePatterns\FactoryPattern\bin\Debug\EntityFramework.xml
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.csprojResolveAssemblyReference.cache
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.dll
 D:\SourceTree\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.pdb
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.ldf
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.mdf
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\CodePatterns_log.ldf
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\FactoryPattern.dll
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\FactoryPattern.pdb
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.dll
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\nunit.framework.dll
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\EntityFramework.dll
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\CodePatterns.pdb
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\nunit.framework.xml
+C:\GIT\CodePatterns\FactoryPattern\bin\Debug\EntityFramework.xml
+C:\GIT\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.csprojResolveAssemblyReference.cache
+C:\GIT\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.dll
+C:\GIT\CodePatterns\FactoryPattern\obj\Debug\FactoryPattern.pdb

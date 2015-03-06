@@ -21,3 +21,17 @@ D:\SourceTree\CodePatterns\BuilderPattern\bin\Debug\EntityFramework.xml
 D:\SourceTree\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.csprojResolveAssemblyReference.cache
 D:\SourceTree\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.dll
 D:\SourceTree\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.pdb
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.ldf
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.mdf
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\CodePatterns_log.ldf
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\BuilderPattern.dll
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\BuilderPattern.pdb
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.dll
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\nunit.framework.dll
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\EntityFramework.dll
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\CodePatterns.pdb
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\nunit.framework.xml
+C:\GIT\CodePatterns\BuilderPattern\bin\Debug\EntityFramework.xml
+C:\GIT\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.csprojResolveAssemblyReference.cache
+C:\GIT\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.dll
+C:\GIT\CodePatterns\BuilderPattern\obj\Debug\BuilderPattern.pdb

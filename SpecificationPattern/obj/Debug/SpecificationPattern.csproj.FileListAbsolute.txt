@@ -26,3 +26,17 @@ D:\SourceTree\CodePatterns\SpecificationPattern\bin\Debug\EntityFramework.xml
 D:\SourceTree\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.csprojResolveAssemblyReference.cache
 D:\SourceTree\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.dll
 D:\SourceTree\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.pdb
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.ldf
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.mdf
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns_log.ldf
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\SpecificationPattern.dll
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\SpecificationPattern.pdb
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.dll
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\nunit.framework.dll
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\EntityFramework.dll
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\CodePatterns.pdb
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\nunit.framework.xml
+C:\GIT\CodePatterns\SpecificationPattern\bin\Debug\EntityFramework.xml
+C:\GIT\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.csprojResolveAssemblyReference.cache
+C:\GIT\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.dll
+C:\GIT\CodePatterns\SpecificationPattern\obj\Debug\SpecificationPattern.pdb
