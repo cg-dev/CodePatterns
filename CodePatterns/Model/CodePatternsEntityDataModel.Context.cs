@@ -13,10 +13,10 @@ namespace CodePatterns.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CodePatternsConnectionString : DbContext
+    public partial class CodePatternsContext : DbContext
     {
-        public CodePatternsConnectionString()
-            : base("name=CodePatternsConnectionString")
+        public CodePatternsContext()
+            : base("name=CodePatternsContext")
         {
         }
     

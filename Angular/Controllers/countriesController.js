@@ -5,6 +5,6 @@
             $scope.Countries = data;
         })
         .error(function (data) {
-            alert("Problem retrieving data: " + data);
+            alert("Problem retrieving country data: " + data);
         });
 });
