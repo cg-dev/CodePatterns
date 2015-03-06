@@ -10,3 +10,16 @@ D:\SourceTree\CodePatterns\CodePatterns\bin\Debug\EntityFramework.xml
 D:\SourceTree\CodePatterns\CodePatterns\bin\Debug\EntityFramework.SqlServer.xml
 D:\SourceTree\CodePatterns\CodePatterns\obj\Debug\CodePatterns.dll
 D:\SourceTree\CodePatterns\CodePatterns\obj\Debug\CodePatterns.pdb
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns.ldf
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns.mdf
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns_log.ldf
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns.dll.config
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns.dll
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\CodePatterns.pdb
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\EntityFramework.dll
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\EntityFramework.SqlServer.dll
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\EntityFramework.xml
+C:\GIT\CodePatterns\CodePatterns\bin\Debug\EntityFramework.SqlServer.xml
+C:\GIT\CodePatterns\CodePatterns\obj\Debug\CodePatterns.csprojResolveAssemblyReference.cache
+C:\GIT\CodePatterns\CodePatterns\obj\Debug\CodePatterns.dll
+C:\GIT\CodePatterns\CodePatterns\obj\Debug\CodePatterns.pdb
