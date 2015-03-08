@@ -5,19 +5,13 @@ using CodePatterns.Model;
 
 namespace Angular.Controllers
 {
-    public class CountryController : ApiController
+    public class CountriesForContinentController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Country> Get()
+        public IEnumerable<Country> Get(int continentId)
         {
             var controller = new CountryQueryService();
-            return controller.Get();
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
+            return controller.GetByContinent(continentId);
         }
 
         // POST api/<controller>

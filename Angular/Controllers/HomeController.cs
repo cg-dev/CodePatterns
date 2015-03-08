@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Angular2.Controllers
+namespace Angular.Controllers
 {
     public class HomeController : Controller
     {

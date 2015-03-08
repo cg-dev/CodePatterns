@@ -3,7 +3,7 @@ using System.Web.Http;
 using QueryServices;
 using CodePatterns.Model;
 
-namespace Angular2.Controllers
+namespace Angular.Controllers
 {
     public class ContinentController : ApiController
     {

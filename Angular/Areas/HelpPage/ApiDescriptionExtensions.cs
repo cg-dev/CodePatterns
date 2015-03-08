@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace Angular2.Areas.HelpPage
+namespace Angular.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

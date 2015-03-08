@@ -165,6 +165,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ContinentController.cs" />
+    <Compile Include="Controllers\CountriesForContinentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -234,8 +235,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Controllers\app.js" />
-    <Content Include="Controllers\continentsController.js" />
-    <Content Include="Controllers\countriesController.js" />
+    <Content Include="Controllers\CountryListController.js" />
     <Content Include="Controllers\countryController.js" />
     <Content Include="Controllers\modalController.js" />
     <Content Include="Controllers\volumeCalculatorController.js" />
@@ -1104,6 +1104,9 @@
       <Project>{1ee3dda6-82d6-4072-8d28-3b4ce3a971ce}</Project>
       <Name>QueryServices</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Angular2.Controllers
+namespace Angular.Controllers
 {
     public class ValuesController : ApiController
     {
