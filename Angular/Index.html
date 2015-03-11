@@ -10,7 +10,7 @@
     <script src="Controllers/app.js"></script>
     <script src="Controllers/volumeCalculatorController.js"></script>
     <script src="Controllers/countryController.js"></script>
-    <script src="Controllers/CountryListController.js"></script>
+    <script src="Controllers/countryListController.js"></script>
     <script src="Controllers/modalController.js"></script>
     <title>Angular Demo Page</title>
     <style>
@@ -79,7 +79,7 @@
         </div>
         <hr />
         <div class="row">
-            <table class="table" data-ng-controller="CountryListController">
+            <table class="table" data-ng-controller="countryListController">
                 <tr>
                     <th>The following table is populated from a WebAPI accessing a local data store.
                         Click on a row to filter the country list by the continent.</th>
@@ -115,7 +115,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat='Country in Countries | orderBy: "Name"'>
+                                <tr data-ng-repeat='Country in Countries | orderBy: "Name"' data-ng-click="open(Country.Id)">
                                     <td>{{Country.Name}}</td>
                                     <td>{{Country.Id}}</td>
                                 </tr>
