@@ -1,6 +1,6 @@
 ﻿app.controller("countryListController", function ($scope, $http, $modal) {
-    $http
-    .get("/api/Country/")
+    
+    $http.get("/api/Country/")
     .success(function (data) {
         $scope.Countries = data;
     })
@@ -8,8 +8,7 @@
         alert("Problem retrieving country data: " + data);
     });
     
-    $http
-    .get("/api/Continent/")
+    $http.get("/api/Continent/")
     .success(function (data) {
         $scope.Continents = data;
     })
@@ -18,8 +17,7 @@
     });
     
     $scope.GetCountriesFilteredByContinent = function (continentId) {
-        $http
-            .get("/api/CountriesForContinent?continentId=" + continentId.toString())
+        $http.get("/api/CountriesForContinent?continentId=" + continentId.toString())
             .success(function (data) {
                 $scope.Countries = data;
             })

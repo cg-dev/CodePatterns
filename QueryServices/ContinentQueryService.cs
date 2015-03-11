@@ -7,11 +7,10 @@ namespace QueryServices
     {
         public IEnumerable<Continent> Get()
         {
-
-            var continents = new List<Continent>(); 
-            
             using (var context = new CodePatternsContext())
             {
+                var continents = new List<Continent>(); 
+
                 foreach (var continent in context.Continents)
                 {
                     continents.Add(new Continent
@@ -20,8 +19,9 @@ namespace QueryServices
                         Name = continent.Name
                     });
                 }
+
+                return continents;
             }
-            return continents;
         }
     }
 }

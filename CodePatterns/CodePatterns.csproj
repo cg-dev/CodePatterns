@@ -94,13 +94,9 @@
   <ItemGroup>
     <Content Include="CodePatterns.ldf">
       <DependentUpon>CodePatterns.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodePatterns.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="CodePatterns.mdf" />
     <Content Include="CodePatterns_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>CodePatterns.mdf</DependentUpon>
     </Content>
   </ItemGroup>
