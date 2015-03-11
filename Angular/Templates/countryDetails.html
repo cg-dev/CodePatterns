@@ -1,12 +1,12 @@
 ﻿<div class="modal-header">
     <h1 class="modal-title">Modal Title</h1>
 </div>
-<div class="modal-body">
-    <p>ID:</p>
-    <p>Name:</p>
-    <p>Name:</p>
-    <p>Continent:</p>
-    <p>Currency:</p>    
+<div class="modal-body" data-ng-controller="countryDetailsController as country">
+    <p>ID: {{country.Id}}</p>
+    <p>Name: {{country.Name}}</p>
+    <p>Language: {{country.Language}}</p>
+    <p>Continent: {{country.ContinentId}}</p>
+    <p>Currency: {{country.Currency}}</p>    
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

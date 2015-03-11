@@ -26,16 +26,25 @@
             });
     };
     
-    $scope.open = function (countryId) {
+    $scope.open = function (continentId, size) {
         $modal.open({
-            templateUrl: '/Templates/countryDetails.html?countryId=' + countryId.toString(),
+            templateUrl: '/Templates/countryDetails.html?ContinentId=' + continentId.toString(),
             controller: 'countryDetailsController',
             size: size
         });
     };
 });
 
-app.controller('countryDetailsController', function ($scope, $modalInstance) {
+app.controller('countryDetailsController', function ($scope, $http, $modalInstance) {
+
+    $http.get("/api/Country/" + $scope.Id)
+    .success(function (data) {
+        $scope.Countries = data;
+    })
+    .error(function (data) {
+        alert("Problem retrieving country data: " + data);
+    });
+    
     $scope.ok = function () {
         $modalInstance.close();
     };

@@ -25,6 +25,19 @@ namespace QueryServices
             }
         }
 
+        public Country GetById(int id)
+        {
+            if (id == 0)
+            {
+                return new Country();
+            }
+
+            using (var context = new CodePatternsContext())
+            {
+                return context.Countries.SingleOrDefault(c => c.Id == id);
+            }
+        }
+
         public IEnumerable<Country> GetByContinent(int id)
         {
             if (id == 0)

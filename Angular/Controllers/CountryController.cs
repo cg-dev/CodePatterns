@@ -15,9 +15,10 @@ namespace Angular.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public Country Get(int id)
         {
-            return "value";
+            var controller = new CountryQueryService();
+            return controller.GetById(id);
         }
 
         // POST api/<controller>
