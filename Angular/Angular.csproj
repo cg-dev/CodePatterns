@@ -235,7 +235,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Controllers\app.js" />
-    <Content Include="Controllers\CountryListController.js" />
+    <Content Include="Controllers\countryListController.js" />
     <Content Include="Controllers\countryController.js" />
     <Content Include="Controllers\modalController.js" />
     <Content Include="Controllers\volumeCalculatorController.js" />
@@ -1056,6 +1056,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Templates\countryDetails.html" />
     <Content Include="Templates\modalForm.html" />
     <Content Include="ToDo.txt" />
     <Content Include="Web.config" />

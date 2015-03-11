@@ -1,12 +1,12 @@
 ﻿
 app.controller('modalController', function ($scope, $modal) {
     $scope.open = function(size) {
-        var modalInstance = $modal.open({
+        $modal.open({
             templateUrl: '/Templates/modalForm.html',
             controller: 'modalInstanceController',
             size: size
         });
-    }
+    };
 });
 
 app.controller('modalInstanceController', function ($scope, $modalInstance) {
