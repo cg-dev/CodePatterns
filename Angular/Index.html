@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/jquery-1.9.0.js"></script>
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-route.js"></script>
     <script src="Scripts/angular-resource.js"></script>
@@ -11,9 +11,10 @@
     <script src="Controllers/volumeCalculatorController.js"></script>
     <script src="Controllers/countryController.js"></script>
     <script src="Controllers/countryListController.js"></script>
+    <script src="Controllers/countryDetailsController.js"></script>
     <script src="Controllers/modalController.js"></script>
     <title>Angular Demo Page</title>
-    <style>
+    <!--<style>
         body {
             padding: 15px;
         }
@@ -31,7 +32,7 @@
             table tr:nth-child(even) {
                 background-color: #ffffff;
             }
-    </style>
+    </style>-->
 </head>
 <body data-ng-app="angularApp">
     <div class="container">
@@ -60,7 +61,7 @@
                             <th>Filter using:
                                 <input data-ng-model="filterText" /></th>
                             <th width="200px">
-                                <button data-ng-click="toggleSortOrder()">Order by {{nextOrder}}</button>
+                                <button class='btn btn-primary' data-ng-click="toggleSortOrder()">Order by {{nextOrder}}</button>
                             </th>
                         </tr>
                     </thead>
@@ -78,8 +79,8 @@
             <button class="btn btn-primary" data-ng-click="open()">Show Modal</button>
         </div>
         <hr />
-        <div class="row">
-            <table class="table" data-ng-controller="countryListController">
+        <div class='row'>
+            <table class='table' data-ng-controller='countryListController'>
                 <tr>
                     <th>The following table is populated from a WebAPI accessing a local data store.
                         Click on a row to filter the country list by the continent.</th>
@@ -95,11 +96,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-click="GetCountriesFilteredByContinent(0)">
+                                <tr data-ng-click='GetCountriesFilteredByContinent(0)'>
                                     <td>Show all countries</td>
                                     <td>0</td>
                                 </tr>
-                                <tr data-ng-repeat='Continent in Continents | orderBy: "Name"' data-ng-click="GetCountriesFilteredByContinent(Continent.Id)">
+                                <tr data-ng-repeat='Continent in Continents | orderBy: "Name"' data-ng-click='GetCountriesFilteredByContinent(Continent.Id)'>
                                     <td>{{Continent.Name}}</td>
                                     <td>{{Continent.Id}}</td>
                                 </tr>
@@ -112,12 +113,14 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Id</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat='Country in Countries | orderBy: "Name"' data-ng-click="open(Country.Id)">
+                                <tr data-ng-repeat='Country in Countries | orderBy: "Name"'>
                                     <td>{{Country.Name}}</td>
                                     <td>{{Country.Id}}</td>
+                                    <td><button class='btn btn-primary' data-ng-click='open(Country.Id)'>View</button></td>
                                 </tr>
                             </tbody>
                         </table>

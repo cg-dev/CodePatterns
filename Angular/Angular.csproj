@@ -235,6 +235,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Controllers\app.js" />
+    <Content Include="Controllers\countryDetailsController.js" />
     <Content Include="Controllers\countryListController.js" />
     <Content Include="Controllers\countryController.js" />
     <Content Include="Controllers\modalController.js" />
