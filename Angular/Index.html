@@ -10,8 +10,6 @@
     <script src="Controllers/app.js"></script>
     <script src="Controllers/volumeCalculatorController.js"></script>
     <script src="Controllers/countryController.js"></script>
-    <script src="Controllers/countryListController.js"></script>
-    <script src="Controllers/countryDetailsController.js"></script>
     <script src="Controllers/modalController.js"></script>
     <title>Angular Demo Page</title>
     <!--<style>
@@ -77,56 +75,6 @@
         </div>
         <div class="row" data-ng-controller="modalController">
             <button class="btn btn-primary" data-ng-click="open()">Show Modal</button>
-        </div>
-        <hr />
-        <div class='row'>
-            <table class='table' data-ng-controller='countryListController'>
-                <tr>
-                    <th>The following table is populated from a WebAPI accessing a local data store.
-                        Click on a row to filter the country list by the continent.</th>
-                    <th>The following table is populated from a WebAPI accessing a local data store</th>
-                </tr>
-                <tr>
-                    <td width="50%">
-                        <table class='table table-striped table-condensed table-hover'>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Id</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-ng-click='GetCountriesFilteredByContinent(0)'>
-                                    <td>Show all countries</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr data-ng-repeat='Continent in Continents | orderBy: "Name"' data-ng-click='GetCountriesFilteredByContinent(Continent.Id)'>
-                                    <td>{{Continent.Name}}</td>
-                                    <td>{{Continent.Id}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td width="50%">
-                        <table class='table table-striped table-condensed table-hover'>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Id</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-ng-repeat='Country in Countries | orderBy: "Name"'>
-                                    <td>{{Country.Name}}</td>
-                                    <td>{{Country.Id}}</td>
-                                    <td><button class='btn btn-primary' data-ng-click='open(Country.Id)'>View</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
 </body>
