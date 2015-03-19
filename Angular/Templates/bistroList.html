@@ -1,0 +1,26 @@
+﻿<p></p>
+<div class="row">
+    The following table is populated from a WebAPI on a remote server (http://www.w3schools.com/website/Customers_JSON.php)
+    <div data-ng-controller="CountryController">
+        <table class='table table-striped table-condensed table-hover'>
+            <thead>
+                <tr>
+                    <th>
+                        Filter using:
+                        <input data-ng-model="filterText" />
+                    </th>
+                    <th width="200px">
+                        <button class='btn btn-primary' data-ng-click="toggleSortOrder()">Order by {{nextOrder}}</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="bistro in names | filter:filterText | orderBy: sortOrder">
+                    <td>{{ bistro.Name }}</td>
+                    <td>{{ bistro.Country }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr />
+</div>
