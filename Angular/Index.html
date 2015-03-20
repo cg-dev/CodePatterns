@@ -19,7 +19,7 @@
 <body data-ng-app="angularApp">
     <div class="container">
         <div class="page-header">
-            <h3>Volume Calculator</h3>
+            <h3>Demo Page</h3>
         </div>
         <tabset>
             <tab heading="Volume Calculator">
@@ -33,6 +33,13 @@
             </tab>
             <tab heading="Continents/Countries List">
                 <div ng-include="'/templates/countryList.html'"></div>
+            </tab>
+            <tab heading="Simple Directive">
+                <h2>Simple Directive</h2>
+                1. Used as a tag<simple-directive></simple-directive>
+                2. Used as a tag with : in the name<simple:directive></simple:directive>
+                3. Used as a div attribute<div simple-directive></div>
+                4. Used as a div attribute with : in the name<div simple:directive></div>
             </tab>
         </tabset>
     </div>
