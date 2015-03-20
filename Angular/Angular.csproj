@@ -1060,6 +1060,7 @@
     <Content Include="Templates\bistroList.html" />
     <Content Include="Templates\countryDetails.html" />
     <Content Include="Templates\countryList.html" />
+    <Content Include="Templates\modal.html" />
     <Content Include="Templates\modalForm.html" />
     <Content Include="Templates\volumeCalculator.html" />
     <Content Include="ToDo.txt" />

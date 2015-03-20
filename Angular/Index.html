@@ -13,6 +13,7 @@
     <script src="Controllers/modalController.js"></script>
     <script src="Controllers/countryListController.js"></script>
     <script src="Controllers/countryDetailsController.js"></script>
+
     <title>Angular Demo Page</title>
 </head>
 <body data-ng-app="angularApp">
@@ -28,10 +29,7 @@
                 <div ng-include="'/templates/bistroList.html'"></div>
             </tab>
             <tab heading="Modal Form">
-                <p></p>
-                <div class="row" data-ng-controller="modalController">
-                    <button class="btn btn-primary" data-ng-click="open()">Show Modal</button>
-                </div>
+                <div ng-include="'/templates/modal.html'"></div>
             </tab>
             <tab heading="Continents/Countries List">
                 <div ng-include="'/templates/countryList.html'"></div>
