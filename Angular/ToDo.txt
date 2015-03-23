@@ -1,3 +1,5 @@
 ﻿Replace ngRoute and $routeProvider
 Use ng-view
 Get local API to run
+
+https://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-2-isolate-scope
