@@ -2,10 +2,9 @@
 
 app.directive('simpleDirective', function () {
     return {
-        restrict: 'AE',
-        scope: {
-            sdValue: '@'
-        },
+            restrict: 'AE',
+            require: '^ngModel',
+            scope: { testvalue: '=' },
         replace: 'true',
         templateUrl: '/Templates/simpleDirective.html',
         link: function($scope, element, attrs) {
@@ -16,5 +15,14 @@ app.directive('simpleDirective', function () {
                 element.css('background-color', 'white');
             });
         }
+    };
+});
+
+app.directive('ngSparkline', function () {
+    return {
+        restrict: 'A',
+        require: '^ngModel',
+        scope: { city: '=' },
+        template: '<div><h4>Weather for {{city}}</h4></div>'
     };
 });

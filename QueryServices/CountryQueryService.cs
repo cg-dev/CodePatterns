@@ -34,7 +34,8 @@ namespace QueryServices
 
             using (var context = new CodePatternsContext())
             {
-                return context.Countries.SingleOrDefault(c => c.Id == id);
+                var myTest = context.Countries.SingleOrDefault(c => c.Id == id);
+                return myTest;
             }
         }
 

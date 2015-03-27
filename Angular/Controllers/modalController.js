@@ -4,6 +4,7 @@ app.controller('modalController', function ($scope, $modal) {
         $modal.open({
             templateUrl: '/Templates/modalForm.html',
             controller: 'modalInstanceController',
+            backdrop: 'static',
             size: size
         });
     };

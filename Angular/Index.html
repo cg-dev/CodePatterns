@@ -31,16 +31,19 @@
             <tab heading="Modal Form">
                 <div ng-include="'/templates/modal.html'"></div>
             </tab>
-            <tab heading="Continents/Countries List">
+            <tab heading="Continents/Countries List" data-ng-controller="userController">
                 <div ng-include="'/templates/countryList.html'"></div>
             </tab>
             <tab heading="Simple Directive">
                 <h2>Simple Directive</h2>
-                <input type="text" ng-model="sdValue" placeholder="Enter a value to be used by the directive" /><br/>
-                1. Used as a tag<simple-directive incomingValue="First value {{sdValue}}"></simple-directive>
-                2. Used as a tag with : in the name<simple:directive></simple:directive>
-                3. Used as a div attribute<div simple-directive></div>
-                4. Used as a div attribute with : in the name<div simple:directive></div>
+                <input type="text" ng-model="testvalue" placeholder="Enter a value to be used by the simple directive" /><br/>
+                1. Used as a tag <simple-directive ng-model="testvalue"></simple-directive>
+                2. Used as a tag with : in the name <simple:directive ng-model="testvalue"></simple:directive>
+                3. Used as a div attribute <div simple-directive ng-model="testvalue"></div>
+                4. Used as a div attribute with : in the name <div simple:directive ng-model="testvalue"></div>
+            </tab>
+            <tab heading="Weather Directive">
+                <div ng-sparkline ng-model='"city"'></div>
             </tab>
         </tabset>
     </div>
