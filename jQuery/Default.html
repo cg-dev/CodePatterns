@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Demonstrations</title>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script>
+      $(function() {
+          $(".DateInputField").datepicker({
+              dateFormat: 'd M, y',
+              showOtherMonths: true,
+              selectOtherMonths: true
+          });
+
+          $(".DateInputField").mouseover(function() {
+              $('#DateOut').text($(this).val());
+              $('#DateOut').closest('div').show('slow');
+          });
+      });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>jQuery DatePicker</td><td><input id="Date1" class="DateInputField" type="date" /></td><td><input id="Date2" class="DateInputField" type="date" /></td>
+        </tr>
+    </table>
+    <div style="display: none">
+        <h1>Last selected date = <label id="DateOut"></label></h1>
+    </div>
+</body>
+</html>
