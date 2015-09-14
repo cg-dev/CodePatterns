@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0DA001DF-EBEC-49AE-9EED-36EDB38C3FD8}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{EC3ECC91-9262-4D72-88FF-9FB261E42EFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jQuery", "jQuery\jQuery.csproj", "{4314190B-9B4A-4EA0-A46D-6B11615BE4EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autofac", "Autofac\Autofac.csproj", "{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{4314190B-9B4A-4EA0-A46D-6B11615BE4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4314190B-9B4A-4EA0-A46D-6B11615BE4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4314190B-9B4A-4EA0-A46D-6B11615BE4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
