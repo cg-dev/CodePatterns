@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Autofac.w3schools {
+namespace WebService.w3schools {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -37,7 +37,7 @@ namespace Autofac.w3schools {
         
         /// <remarks/>
         public TempConvert() {
-            this.Url = global::Autofac.Properties.Settings.Default.Autofac_w3schools_TempConvert;
+            this.Url = global::WebService.Properties.Settings.Default.WebService_w3schools_TempConvert;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

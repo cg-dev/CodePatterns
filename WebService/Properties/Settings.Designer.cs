@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Autofac.Properties {
+namespace WebService.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,9 @@ namespace Autofac.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://www.w3schools.com/webservices/tempconvert.asmx")]
-        public string Autofac_w3schools_TempConvert {
+        public string WebService_w3schools_TempConvert {
             get {
-                return ((string)(this["Autofac_w3schools_TempConvert"]));
+                return ((string)(this["WebService_w3schools_TempConvert"]));
             }
         }
     }

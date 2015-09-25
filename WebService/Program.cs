@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace Autofac
+namespace WebService
+
 {
     class Program
     {
@@ -20,6 +21,7 @@ namespace Autofac
             Console.WriteLine("Farenheit: {0} = celsius, {1}", 0, service.FahrenheitToCelsius("0"));
             Console.WriteLine("Farenheit: {0} = celsius, {1}", 32, service.FahrenheitToCelsius("32"));
             Console.WriteLine("Farenheit: {0} = celsius, {1}", 100, service.FahrenheitToCelsius("100"));
+            Console.WriteLine("Press enter key to continue...");
             Console.ReadLine();
         }
     }
