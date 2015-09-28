@@ -1,8 +1,12 @@
-﻿namespace Autofac
+﻿using NUnit.Framework;
+
+namespace Autofac.Tests
 {
-    class Program
+    [TestFixture]
+    public class IocTests
     {
-        static void Main(string[] args)
+        [Test]
+        public void ResolveShouldShowTheCorrectGrandchildName()
         {
             var builder = new ContainerBuilder();
 
