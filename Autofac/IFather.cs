@@ -1,7 +1,9 @@
 ﻿namespace Autofac
 {
-    interface IFather
+    public interface IFather
     {
-        string Name { get; set; }
+        ISon Son { get; set; }
+
+        string Name();
     }
 }

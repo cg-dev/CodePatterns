@@ -1,7 +1,7 @@
 ﻿namespace Autofac
 {
-    interface ISon
+    public interface ISon
     {
-        string Name { get; set; }
+        string Name();
     }
 }

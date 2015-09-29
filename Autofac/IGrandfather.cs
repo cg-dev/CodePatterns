@@ -1,7 +1,9 @@
 ﻿namespace Autofac
 {
-    interface IGrandfather
+    public interface IGrandfather
     {
-        string Name { get; set; }
+        IFather Son { get; set; }
+
+        string Name();
     }
 }

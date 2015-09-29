@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Autofac
+﻿namespace Autofac
 {
     public class Logic
     {
-        IMessage _message;
+        private IGrandfather _grandfather;
+        private IFather _father;
+        private ISon _son;
 
-        public Logic(IMessage message)
+        public Logic(IGrandfather grandfather, IFather father, ISon son)
         {
-            _message = message;
+            _grandfather = grandfather;
+            _father = father;
+            _son = son;
         }
 
-        public void Run()
+        public string Run(string relation)
         {
-            Console.WriteLine("This code segment will create an instance of a class using Autofac.");
-            _message.Display();
-            Console.WriteLine("Press enter key to continue...");
-            Console.ReadLine();
+            switch (relation.ToLower())
+            {
+                case "g" :
+                    return _grandfather.Name();
+                case "f" :
+                    return _father.Name() + " - " + _grandfather.Son.Name();
+                case "s" :
+                    return _son.Name() + " - " + _grandfather.Son.Son.Name();
+            }
+            return string.Empty;
         }
     }
 }
