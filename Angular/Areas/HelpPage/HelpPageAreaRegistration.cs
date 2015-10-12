@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace Angular.Areas.HelpPage
+namespace Angular2.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

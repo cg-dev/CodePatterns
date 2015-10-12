@@ -7,9 +7,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Angular.Areas.HelpPage.Models;
+using Angular2.Areas.HelpPage.Models;
 
-namespace Angular.Areas.HelpPage
+namespace Angular2.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {
