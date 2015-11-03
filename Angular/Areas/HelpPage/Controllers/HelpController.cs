@@ -1,9 +1,9 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Angular.Areas.HelpPage.Models;
+using Angular2.Areas.HelpPage.Models;
 
-namespace Angular.Areas.HelpPage.Controllers
+namespace Angular2.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.
