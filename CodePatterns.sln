@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\We
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp", "FSharp\FSharp.fsproj", "{EF40322A-4990-4476-A1F3-07604896A509}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "Bootstrap\Bootstrap.csproj", "{50F5381E-B933-4BBE-A908-54DACCA2687D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,14 +75,14 @@ Global
 		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC89397B-6EAF-4851-AE3E-E2DC4072FD12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CC75C70-2AAE-4804-A6F8-E892A573C5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CC75C70-2AAE-4804-A6F8-E892A573C5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CC75C70-2AAE-4804-A6F8-E892A573C5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CC75C70-2AAE-4804-A6F8-E892A573C5C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF40322A-4990-4476-A1F3-07604896A509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF40322A-4990-4476-A1F3-07604896A509}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF40322A-4990-4476-A1F3-07604896A509}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF40322A-4990-4476-A1F3-07604896A509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50F5381E-B933-4BBE-A908-54DACCA2687D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50F5381E-B933-4BBE-A908-54DACCA2687D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50F5381E-B933-4BBE-A908-54DACCA2687D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50F5381E-B933-4BBE-A908-54DACCA2687D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
