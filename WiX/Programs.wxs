@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="WiX" Language="1033" Version="1.0.0" Manufacturer="OU" UpgradeCode="24278245-3BB3-4AC6-9706-1550B14B75B0">
+    <Package Description="Test Wix Project" Compressed="yes"/>
+    <MediaTemplate EmbedCab="yes"/>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="WiXFolder"></Directory>
+      </Directory>
+    </Directory>
+
+    <Component Id="TextFileComponent" Directory="INSTALLFOLDER">
+      <File Source="redist\foo.txt"></File>
+    </Component>
+
+    <Feature Id="MainFeature" Title="WixTitle" Level="1">
+      <ComponentRef Id="TextFileComponent"/>
+    </Feature>
+  </Product>
+</Wix>
