@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="WiX" Language="1033" Version="1.0.0" Manufacturer="OU" UpgradeCode="24278245-3BB3-4AC6-9706-1550B14B75B0">
-    <Package Description="Test Wix Project" Compressed="yes"/>
+  <Product Id="*" Name="FormsApp" Language="1033" Version="1.0.0" Manufacturer="OU" UpgradeCode="24278245-3BB3-4AC6-9706-1550B14B75B0">
+    <Package Description="Test Wix Project" InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
     <MediaTemplate EmbedCab="yes"/>
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="WiXFolder"></Directory>
-      </Directory>
-    </Directory>
+    
+    <UIRef Id="WixUI_Minimal"/>
 
-    <Component Id="TextFileComponent" Directory="INSTALLFOLDER">
-      <File Source="redist\foo.txt"></File>
-    </Component>
+    <WixVariable Id="WixUILicenceRtf" Value="licence.rtf"/>
+    <WixVariable Id="WixUIDialogBmp" Value="wixdlg.jpg"/>
 
-    <Feature Id="MainFeature" Title="WixTitle" Level="1">
-      <ComponentRef Id="TextFileComponent"/>
+    <PropertyRef Id="NETFRAMEWORK20"/>
+
+    <Condition Message="Thi sapplication requires .Net Framework 2.0. Please install the .Net Framework 2.0 then return to this installation.">
+      <![CDATA[Installed OR NETFRAMEWORK20]]>
+    </Condition>
+
+    <Feature Id="ProductFeature" Title="FormsApplication" Level="1">
+      <ComponentRef Id="ProductComponent"/>
+      <ComponentRef Id="UninstallShortcut"/>
     </Feature>
   </Product>
 </Wix>

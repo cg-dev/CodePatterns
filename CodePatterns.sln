@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern", "SpecificationPattern\SpecificationPattern.csproj", "{D028C35E-C2C1-443E-A611-505E41FA72FA}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "Bootstrap\Bootstrap.csproj", "{50F5381E-B933-4BBE-A908-54DACCA2687D}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WiX", "WiX\WiX.wixproj", "{1DB745C8-A7EB-403C-82D9-4091589CC54A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsApp", "FormsApp\FormsApp.csproj", "{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +171,16 @@ Global
 		{1DB745C8-A7EB-403C-82D9-4091589CC54A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1DB745C8-A7EB-403C-82D9-4091589CC54A}.Release|x86.ActiveCfg = Release|x86
 		{1DB745C8-A7EB-403C-82D9-4091589CC54A}.Release|x86.Build.0 = Release|x86
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{95DA0700-E5E4-4C86-B2A9-689B7DFF5812}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
