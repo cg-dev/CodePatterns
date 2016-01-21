@@ -12,10 +12,10 @@
       <RemoveFolder Id="RemoveFormsAppShortcut" Directory="FormsAppShortcuts" On="uninstall"/>
     </Component>
     
-    <Component Id="UninstallShortcut" Guid="*" Directory="FormsAppShortcuts">
+    <!--<Component Id="UninstallShortcut" Guid="*" Directory="FormsAppShortcuts">
       <Shortcut Id="UnistallThisProduct" Name="Uninstall FormsApp" Description="Uninstalls the FormsApp application"
                 Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]"/>
       <RegistryValue Root="HKCU" Key="Software\OpenUniversity\Chris" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
-    </Component>
+    </Component>-->
   </Fragment>
 </Wix>

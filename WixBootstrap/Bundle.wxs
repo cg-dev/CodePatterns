@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+  <Bundle Name="WixBootstrap" Version="1.0.0.0" Manufacturer="The Open University" UpgradeCode="5067a031-51a6-4652-92d9-5144833a87f9">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkSidebarLicense">
+      <bal:WixStandardBootstrapperApplication
+        LicenseUrl=""
+        ShowVersion="yes"/>
+    </BootstrapperApplicationRef>
+    <Chain>
+      <PackageGroupRef Id="NetFx45Web"/>
+      <MsiPackage SourceFile="$(var.WiX.TargetPath)"/>
+    </Chain>
+  </Bundle>
+</Wix>

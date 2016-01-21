@@ -4,10 +4,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.8</ProductVersion>
-    <ProjectGuid>1db745c8-a7eb-403c-82d9-4091589cc54a</ProjectGuid>
+    <ProjectGuid>5067a031-51a6-4652-92d9-5144833a87f9</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>WiX</OutputName>
-    <OutputType>Package</OutputType>
+    <OutputName>WixBootstrap</OutputName>
+    <OutputType>Bundle</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
   </PropertyGroup>
@@ -21,24 +21,22 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components.wxs" />
-    <Compile Include="Directories.wxs" />
-    <Compile Include="Programs.wxs" />
+    <Compile Include="Bundle.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
     <WixExtension Include="WixNetFxExtension">
       <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
       <Name>WixNetFxExtension</Name>
     </WixExtension>
+    <WixExtension Include="WixBalExtension">
+      <HintPath>$(WixExtDir)\WixBalExtension.dll</HintPath>
+      <Name>WixBalExtension</Name>
+    </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormsApp\FormsApp.csproj">
-      <Name>FormsApp</Name>
-      <Project>{95da0700-e5e4-4c86-b2a9-689b7dff5812}</Project>
+    <ProjectReference Include="..\WiX\WiX.wixproj">
+      <Name>WiX</Name>
+      <Project>{1db745c8-a7eb-403c-82d9-4091589cc54a}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
