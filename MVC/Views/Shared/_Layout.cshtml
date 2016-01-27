@@ -12,7 +12,11 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="~/Content/images/OdeToFood.png" />
+                        </a>
+                    </p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -23,6 +27,7 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Reviews", "Index", "Reviews")</li>
                         </ul>
                     </nav>
                 </div>
@@ -33,6 +38,11 @@
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
+        </div>
+        
+        <div>
+            <h3>Best Review</h3>
+            @Html.Action("BestReview", "Reviews")
         </div>
         <footer>
             <div class="content-wrapper">
