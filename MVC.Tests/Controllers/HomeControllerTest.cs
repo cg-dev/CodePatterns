@@ -1,17 +1,18 @@
-﻿using System.Web.Mvc;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MVC;
 using MVC.Controllers;
 
 namespace MVC.Tests.Controllers
 {
-    using NUnit.Framework;
-
-    using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-
-    [TestFixture]
+    [TestClass]
     public class HomeControllerTest
     {
-        [Test]
+        [TestMethod]
         public void Index()
         {
             // Arrange
@@ -24,7 +25,7 @@ namespace MVC.Tests.Controllers
             Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
         }
 
-        [Test]
+        [TestMethod]
         public void About()
         {
             // Arrange
@@ -34,10 +35,10 @@ namespace MVC.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result.Model);
+            Assert.IsNotNull(result);
         }
 
-        [Test]
+        [TestMethod]
         public void Contact()
         {
             // Arrange
