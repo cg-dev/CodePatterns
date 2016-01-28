@@ -12,7 +12,9 @@ namespace CodePatterns.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
+    using CodePatterns.Entities;
+
     public partial class CodePatternsContext : DbContext
     {
         public CodePatternsContext()

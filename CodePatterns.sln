@@ -36,6 +36,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1654A36D-3B68-49A8-AA03-3180AFF167AF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Solution Items\Mvc.ldf = Solution Items\Mvc.ldf
+		Solution Items\Mvc.mdf = Solution Items\Mvc.mdf
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{48B726A2-07B2-4CFF-B4B2-4E16CBBC68F1}"
