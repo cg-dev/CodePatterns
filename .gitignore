@@ -8,6 +8,8 @@
 
 *.mdf
 *.ldf
+!solution items/*.mdf
+!solution items/*.ldf
 
 # Build results
 
