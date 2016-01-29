@@ -4,14 +4,27 @@
     using System.Web.Mvc;
 
     using MVC.Models;
+    using MVC.ViewModels;
 
     public class HomeController : Controller
     {
         MvcDb _db = new MvcDb();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
-            var model = _db.Restaurants.ToList();
+            var model = _db.Restaurants
+                .OrderByDescending(r => r.Reviews.Average(rv => rv.Rating))
+                .ThenBy(r => r.Name)
+                .Where(r => searchTerm == null || r.Name.Contains(searchTerm))
+                .Select(r => new RestaurantListViewModel
+                             {
+                                 Id = r.Id,
+                                 Name = r.Name,
+                                 City = r.City,
+                                 Country = r.Country,
+                                 NumberOfReviews = r.Reviews.Count
+                             })
+                .ToList();
 
             return View(model);
         }
