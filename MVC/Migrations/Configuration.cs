@@ -4,6 +4,7 @@ namespace MVC.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Globalization;
     using System.Linq;
 
     using MVC.Models;
@@ -46,6 +47,17 @@ namespace MVC.Migrations
                     City = "Madrid",
                     Country = "Spain"
                 });
+
+            for (int i = 0; i < 1000; i++)
+            {
+                context.Restaurants.AddOrUpdate(r => r.Name,
+                                    new Restaurant
+                {
+                    Name = "Restaurant: " + i.ToString(CultureInfo.InvariantCulture),
+                    City = "Nowhere",
+                    Country = "USA"
+                });
+            }
         }
     }
 }

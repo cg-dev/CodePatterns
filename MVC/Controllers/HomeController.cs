@@ -6,11 +6,27 @@
     using MVC.Models;
     using MVC.ViewModels;
 
+    using PagedList;
+
     public class HomeController : Controller
     {
         MvcDb _db = new MvcDb();
 
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Autocomplete(string term)
+        {
+            var model = _db.Restaurants
+                   .Where(r => r.Name.Contains(term))
+                   .Take(10)
+                   .OrderBy(r => r.Name)
+                   .Select(r => new 
+                   {
+                       label = r.Name
+                   })
+                   .ToList();
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Index(string searchTerm = null, int page = 1)
         {
             var model = _db.Restaurants
                 .OrderByDescending(r => r.Reviews.Average(rv => rv.Rating))
@@ -24,7 +40,12 @@
                                  Country = r.Country,
                                  NumberOfReviews = r.Reviews.Count
                              })
-                .ToList();
+                .ToPagedList(page, 10);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_RestaurantList", model);
+            }
 
             return View(model);
         }
