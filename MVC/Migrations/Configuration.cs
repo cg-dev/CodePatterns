@@ -6,8 +6,11 @@ namespace MVC.Migrations
     using System.Data.Entity.Migrations;
     using System.Globalization;
     using System.Linq;
+    using System.Web.Security;
 
     using MVC.Models;
+
+    using WebMatrix.WebData;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MVC.Models.MvcDb>
     {
@@ -57,6 +60,31 @@ namespace MVC.Migrations
                     City = "Nowhere",
                     Country = "USA"
                 });
+            }
+
+            SeedMembership();
+        }
+
+        private void SeedMembership()
+        {
+            WebSecurity.InitializeDatabaseConnection("MvcConnectionString", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider)Membership.Provider;
+
+            if (!roles.RoleExists("admin"))
+            {
+                roles.CreateRole("admin");
+            }
+
+            if (membership.GetUser("chris", false) == null)
+            {
+                membership.CreateUserAndAccount("chris", "password");
+            }
+
+            if (!roles.GetRolesForUser("chris").Contains("admin"))
+            {
+                roles.AddUsersToRoles(new[] { "chris" }, new[] { "admin" });
             }
         }
     }

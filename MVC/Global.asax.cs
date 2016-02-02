@@ -9,6 +9,8 @@ using System.Web.Routing;
 
 namespace MVC
 {
+    using WebMatrix.WebData;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
@@ -16,6 +18,8 @@ namespace MVC
     {
         protected void Application_Start()
         {
+            WebSecurity.InitializeDatabaseConnection("MvcConnectionString", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

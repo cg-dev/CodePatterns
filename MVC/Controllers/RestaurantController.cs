@@ -19,12 +19,15 @@ namespace MVC.Controllers
             return View(_db.Restaurants.ToList());
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Restaurant restaurant)
         {
             if (ModelState.IsValid)
