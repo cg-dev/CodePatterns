@@ -2,9 +2,11 @@
 {
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.UI;
 
     using MVC.Models;
     using MVC.ViewModels;
+    using MVC.Views.Home;
 
     using PagedList;
 
@@ -26,8 +28,11 @@
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(CacheProfile = "Long", VaryByHeader = "X-Requested-With;Accept-Language", Location = OutputCacheLocation.Server)]
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
+            var greeting = Resources.Greeting;
+
             var model = _db.Restaurants
                 .OrderByDescending(r => r.Reviews.Average(rv => rv.Rating))
                 .ThenBy(r => r.Name)
