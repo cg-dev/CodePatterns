@@ -12,11 +12,21 @@
 
     public class HomeController : Controller
     {
-        MvcDb _db = new MvcDb();
+        IMvcDb _db;
+
+        public HomeController()
+        {
+            _db = new MvcDb();
+        }
+
+        public HomeController(IMvcDb db)
+        {
+            _db = db;
+        }
 
         public ActionResult Autocomplete(string term)
         {
-            var model = _db.Restaurants
+            var model = _db.Query<Restaurant>()
                    .Where(r => r.Name.Contains(term))
                    .Take(10)
                    .OrderBy(r => r.Name)
@@ -33,7 +43,7 @@
         {
             var greeting = Resources.Greeting;
 
-            var model = _db.Restaurants
+            var model = _db.Query<Restaurant>()
                 .OrderByDescending(r => r.Reviews.Average(rv => rv.Rating))
                 .ThenBy(r => r.Name)
                 .Where(r => searchTerm == null || r.Name.Contains(searchTerm))

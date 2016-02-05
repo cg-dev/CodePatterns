@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MVC;
+
 using MVC.Controllers;
 
 namespace MVC.Tests.Controllers
 {
+    using MVC.ViewModels;
+
     [TestClass]
     public class HomeControllerTest
     {
@@ -16,20 +16,22 @@ namespace MVC.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(NewFakeDb());
+            controller.ControllerContext = new FakeControllerContext();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
+            var model = result.Model as IEnumerable<RestaurantListViewModel>;
 
             // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            Assert.AreEqual(10, model.Count());
         }
 
         [TestMethod]
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(NewFakeDb());
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -42,13 +44,20 @@ namespace MVC.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(NewFakeDb());
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        private static FakeMvcDb NewFakeDb()
+        {
+            var db = new FakeMvcDb();
+            db.AddSet(TestData.Restaurants);
+            return db;
         }
     }
 }

@@ -223,6 +223,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AboutModel.cs" />
+    <Compile Include="Models\IMvcDb.cs" />
     <Compile Include="Models\MvcDb.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\UserProfile.cs" />

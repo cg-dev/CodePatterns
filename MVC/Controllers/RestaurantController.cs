@@ -12,11 +12,21 @@ namespace MVC.Controllers
 
     public class RestaurantController : Controller
     {
-        private MvcDb _db = new MvcDb();
+        private IMvcDb _db;
+
+        public RestaurantController()
+        {
+            _db = new MvcDb();
+        }
+
+        public RestaurantController(IMvcDb db)
+        {
+            _db = db;
+        }
 
         public ActionResult Index()
         {
-            return View(_db.Restaurants.ToList());
+            return View(_db.Query<Restaurant>().ToList());
         }
 
         [Authorize(Roles = "admin")]
@@ -32,7 +42,7 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Restaurants.Add(restaurant);
+                _db.Add(restaurant);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -42,7 +52,8 @@ namespace MVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            var restaurant = _db.Restaurants.Find(id);
+            var restaurant = _db.Query<Restaurant>()
+                .Single(r => r.Id == id);
 
             if (restaurant == null)
             {
@@ -57,7 +68,7 @@ namespace MVC.Controllers
         {
                 if (ModelState.IsValid)
                 {
-                    _db.Entry(restaurant).State = EntityState.Modified;
+                    _db.Update(restaurant);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -66,7 +77,7 @@ namespace MVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            var restaurant = _db.Restaurants.Find(id);
+            var restaurant = _db.Query<Restaurant>().Single(r => r.Id == id);
 
             if (restaurant == null)
             {
@@ -81,7 +92,7 @@ namespace MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(restaurant).State = EntityState.Deleted;
+                _db.Remove(restaurant);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

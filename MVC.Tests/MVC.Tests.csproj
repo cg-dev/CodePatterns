@@ -121,6 +121,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FakeControllerContext.cs" />
+    <Compile Include="Controllers\FakeHttpContext.cs" />
+    <Compile Include="Controllers\FakeHttpRequest.cs" />
+    <Compile Include="Controllers\FakeMvcDb.cs" />
+    <Compile Include="Controllers\RestaurantControllerTests.cs" />
+    <Compile Include="Controllers\TestData.cs" />
+    <Compile Include="Features\Compute.cs" />
+    <Compile Include="Features\RatingResult.cs" />
+    <Compile Include="Features\RestaurantRater.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Features\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
