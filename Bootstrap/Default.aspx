@@ -3,6 +3,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container-fluid">
         <h1>CodePatterns <small>Learning To Control Layout With Bootstrap</small></h1>
+        <button class="btn btn-success" onclick="$(this).hide();">Click me!</button>
         <!--To keep columns on one line, their class numbers should add up to 12-->
         <!--Row with two equal columns-->
         <div class="row">
