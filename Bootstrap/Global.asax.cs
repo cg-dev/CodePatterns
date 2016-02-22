@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using Bootstrap2;
+using Bootstrap;
 
-namespace Bootstrap2
+namespace Bootstrap
 {
     public class Global : HttpApplication
     {

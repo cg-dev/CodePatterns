@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bootstrap2.Account
+namespace Bootstrap.Account
 {
 
 

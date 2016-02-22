@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Membership.OpenAuth;
 
-namespace Bootstrap2
+namespace Bootstrap
 {
     internal static class AuthConfig
     {

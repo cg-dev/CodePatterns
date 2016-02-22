@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bootstrap2
-{
-    public partial class Contact
-    {
+namespace Bootstrap {
+    
+    
+    public partial class Button {
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Bootstrap2.Account
+namespace Bootstrap.Account
 {
     public partial class Login : Page
     {

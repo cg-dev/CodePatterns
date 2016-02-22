@@ -4,7 +4,7 @@ using System.Linq;
 
 using Microsoft.AspNet.Membership.OpenAuth;
 
-namespace Bootstrap2.Account
+namespace Bootstrap.Account
 {
     public partial class Manage : System.Web.UI.Page
     {

@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bootstrap2
-{
-
-    public partial class About
-    {
-
+namespace Bootstrap {
+    
+    
+    public partial class Image {
     }
 }

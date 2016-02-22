@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Bootstrap2
+namespace Bootstrap
 {
     public partial class SiteMaster : MasterPage
     {

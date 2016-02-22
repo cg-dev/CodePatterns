@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 
-namespace Bootstrap2
+namespace Bootstrap
 {
     public class BundleConfig
     {

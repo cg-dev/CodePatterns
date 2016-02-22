@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Bootstrap2
+namespace Bootstrap
 {
-    public partial class Contact : Page
+    public partial class Navbar : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

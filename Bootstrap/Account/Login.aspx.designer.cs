@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bootstrap2.Account
+namespace Bootstrap.Account
 {
 
 
@@ -30,6 +30,6 @@ namespace Bootstrap2.Account
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bootstrap2.Account.OpenAuthProviders OpenAuthLogin;
+        protected global::Bootstrap.Account.OpenAuthProviders OpenAuthLogin;
     }
 }

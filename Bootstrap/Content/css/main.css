@@ -1,0 +1,7 @@
+﻿.bg-cover {
+    background-image: url('../images/pc.jpg');
+    height: 300px;
+    background-size: cover;
+}
+
+.slide {}

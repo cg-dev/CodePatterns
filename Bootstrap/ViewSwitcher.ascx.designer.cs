@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bootstrap2 {
+namespace Bootstrap {
     
     
     public partial class ViewSwitcher {
