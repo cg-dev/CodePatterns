@@ -80,6 +80,7 @@
                         <li><a runat="server" href="~/Modal">Modals</a></li>
                         <li><a runat="server" href="~/Navbar">Navbars</a></li>
                         <li><a runat="server" href="~/Navigation">Navigations</a></li>
+                        <li><a runat="server" href="~/Simple">Simple page</a></li>
                         <li><a runat="server" href="~/Table">Tables</a></li>
                     </ul>
                 </nav>

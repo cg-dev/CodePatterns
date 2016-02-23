@@ -4,4 +4,6 @@
     background-size: cover;
 }
 
-.slide {}
+.my-sidebar {
+    margin-top: 20px;
+}

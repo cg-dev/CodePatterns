@@ -130,7 +130,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Simple.aspx" />
     <Content Include="Carousel.aspx" />
+    <Content Include="Content\images\car 1.jpg" />
+    <Content Include="Content\images\car 2.jpg" />
+    <Content Include="Content\images\car 3.jpg" />
+    <Content Include="Content\images\car 4.jpg" />
+    <Content Include="Content\images\car 5.jpg" />
     <Content Include="Modal.aspx" />
     <Content Include="Collapse.aspx" />
     <Content Include="Navbar.aspx" />
@@ -356,6 +362,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="Simple.aspx.cs">
+      <DependentUpon>Simple.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Simple.aspx.designer.cs">
+      <DependentUpon>Simple.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Carousel.aspx.cs">
       <DependentUpon>Carousel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
