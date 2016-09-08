@@ -10,10 +10,12 @@
         {
             return new AndSpecification<T>(this, specification);
         }
+
         public ISpecification<T> Or(ISpecification<T> specification)
         {
             return new OrSpecification<T>(this, specification);
         }
+
         public ISpecification<T> Not(ISpecification<T> specification)
         {
             return new NotSpecification<T>(this, specification);

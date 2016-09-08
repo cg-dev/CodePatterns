@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC.Tests", "MVC.Tests\MVC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB", "MongoDB\MongoDB.csproj", "{3F99A09F-4D35-4D09-B043-0ADBA616FB33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutofacWS", "AutofacWS\AutofacWS.csproj", "{7D799D28-2705-4E92-9C08-9044C215FEA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -236,6 +238,16 @@ Global
 		{3F99A09F-4D35-4D09-B043-0ADBA616FB33}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3F99A09F-4D35-4D09-B043-0ADBA616FB33}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3F99A09F-4D35-4D09-B043-0ADBA616FB33}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7D799D28-2705-4E92-9C08-9044C215FEA0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
