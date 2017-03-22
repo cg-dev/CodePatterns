@@ -8,9 +8,10 @@
 
         public IAccountState State { get; set; }
 
-        public Account(Action onUnfreeze)
+        public Account(Action onUnfreeze, decimal openingBalance = 0)
         {
             this.State = new NotVerified(onUnfreeze);
+            this.Balance = openingBalance;
         }
 
         // #1 (Interaction): Deposit was invoked on the State

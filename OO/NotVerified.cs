@@ -2,7 +2,7 @@
 {
     using System;
 
-    class NotVerified : IAccountState
+    public class NotVerified : IAccountState
     {
         private Action OnUnfreeze { get; }
 
@@ -14,7 +14,7 @@
         public IAccountState Deposit(Action addToBalance)
         {
             addToBalance();
-            return this;
+            return new Active(this.OnUnfreeze);
         }
 
         public IAccountState Withdraw(Action subtractFromBalance) => this;
