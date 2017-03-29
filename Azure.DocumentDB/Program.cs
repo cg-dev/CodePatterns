@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using System.Net;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
-using Newtonsoft.Json;
 
 namespace Azure.DocumentDB
 {
-    class Program
+    partial class Program
     {
-        private const string EndpointUrl = "https://cmg-familydb.documents.azure.com:443/";
-        private const string PrimaryKey = "1dW4HycgwC1D6si6CwGW7Wa5nlxrWk6OqaBAZlf85tgy8tEOEAd8uuATLMLTilNC6uZt3b2GljD3jcgzOkaY9A==";
+        private const string EndpointUrl = "https://cmg422-documentdb.documents.azure.com:443/";
+        private const string PrimaryKey = "OlbfOyra1PNxt6vz1x2hZGEk7VvUftiEsdLbsEx2cdZ36FWxJy1PGKQkqFQAmzTxbeJv5hd3J40euDGVExTsqQ==";
         private DocumentClient _client;
 
         private const string DbName = "FamilyDB";
@@ -23,7 +22,8 @@ namespace Azure.DocumentDB
             try
             {
                 var p = new Program();
-                p.GetStartedDemo().Wait();
+                p.InitialiseDbAndCollection().Wait();
+                p.WorkWithDocuments().Wait();
             }
             catch (DocumentClientException de)
             {
@@ -42,13 +42,16 @@ namespace Azure.DocumentDB
             }
         }
 
-        private async Task GetStartedDemo()
+        private async Task InitialiseDbAndCollection()
         {
             this._client = new DocumentClient(new System.Uri(EndpointUrl), PrimaryKey);
 
             await this._client.CreateDatabaseIfNotExistsAsync(new Database { Id = DbName });
             await this._client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(DbName), new DocumentCollection { Id = CollectionName });
+        }
 
+        private async Task WorkWithDocuments()
+        {
             var andersenFamily = new Family
             {
                 Id = "Andersen.1",
@@ -58,7 +61,7 @@ namespace Azure.DocumentDB
                     new Parent{Forename = "Thomas"},
                     new Parent{Forename="Mary Kay"}
                 },
-                Childern = new Child[]
+                Children = new Child[]
                 {
                     new Child
                     {
@@ -85,7 +88,7 @@ namespace Azure.DocumentDB
                     new Parent { Surname = "Wakefield", Forename = "Robin" },
                     new Parent { Surname = "Miller", Forename="Ben" }
                 },
-                Childern = new Child[]
+                Children = new Child[]
                 {
                     new Child
                     {
@@ -104,6 +107,18 @@ namespace Azure.DocumentDB
                 IsRegistered = false
             };
             await this.CreateFamilyDocumentIfNotExists(DbName, CollectionName, wakefieldFamily);
+
+            this.ExecuteSimpleQuery(DbName, CollectionName);
+
+            andersenFamily.Children[0].Grade = 6;
+            await this.ReplaceFamilyDocument(DbName, CollectionName, "Andersen.1", andersenFamily);
+
+            this.ExecuteSimpleQuery(DbName, CollectionName);
+
+            await this.DeleteFamilyDocument(DbName, CollectionName, "Andersen.1");
+
+            //await this._client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri(DbName));
+            //this.WriteToConsoleAndPromptToContinue($"Deleted {DbName} database");
         }
 
         private void WriteToConsoleAndPromptToContinue(string format)
@@ -111,48 +126,6 @@ namespace Azure.DocumentDB
             Console.WriteLine(format);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-        }
-
-        public class Family
-        {
-            [JsonProperty(PropertyName = "id")]
-            public string Id { get; set; }
-            public string Surname { get; set; }
-            public Parent[] Parents { get; set; }
-            public Child[] Childern { get; set; }
-            public Address Address { get; set; }
-            public bool IsRegistered { get; set; }
-
-            public override string ToString()
-            {
-                return JsonConvert.SerializeObject(this);
-            }
-        }
-
-        public class Parent
-        {
-            public string Surname { get; set; }
-            public string Forename { get; set; }
-        }
-
-        public class Child
-        {
-            public string Surname { get; set; }
-            public string Forename { get; set; }
-            public string Gender { get; set; }
-            public int Grade { get; set; }
-            public Pet[] Pets { get; set; }
-        }
-
-        public class Pet
-        {
-            public string GivenName { get; set; }
-        }
-
-        public class Address
-        {
-            public string County { get; set; }
-            public string City { get; set; }
         }
 
         private async Task CreateFamilyDocumentIfNotExists(string databaseName, string collectionName, Family family)
@@ -174,6 +147,44 @@ namespace Azure.DocumentDB
                     throw;
                 }
             }
+        }
+
+        private void ExecuteSimpleQuery(string databasName, string collectionName)
+        {
+            var queryOptions = new FeedOptions { MaxItemCount = -1 };
+
+            var familyQuery = this._client
+                .CreateDocumentQuery<Family>(UriFactory.CreateDocumentCollectionUri(databasName, collectionName), queryOptions)
+                .Where(f => f.Surname == "Andersen");
+
+            Console.WriteLine("Running LINQ");
+
+            foreach (var family in familyQuery)
+            {
+                Console.WriteLine($"\tRead {family}");
+            }
+
+            var familyQueryInSql = this._client.CreateDocumentQuery<Family>(UriFactory.CreateDocumentCollectionUri(databasName, collectionName),
+                "SELECT * FROM Family WHERE Family.Surname = 'Wakefield'", queryOptions);
+
+            Console.WriteLine("Running direct SQL query");
+
+            foreach (var family in familyQueryInSql)
+            {
+                Console.WriteLine($"\tRead {family}");
+            }
+        }
+
+        private async Task ReplaceFamilyDocument(string databaseName, string collectionName, string familyName, Family updatedFamily)
+        {
+            await this._client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, familyName), updatedFamily);
+            this.WriteToConsoleAndPromptToContinue($"Replaced family {familyName}");
+        }
+
+        private async Task DeleteFamilyDocument(string databaseName, string collectionName, string familyName)
+        {
+            await this._client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, familyName));
+            this.WriteToConsoleAndPromptToContinue($"Deleted family {familyName}");
         }
     }
 }
