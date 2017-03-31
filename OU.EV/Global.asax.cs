@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OU.EV.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace OU.EV
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DocumentDBRepository<OU.EV.Models.Item>.Initialize();
+            VehicleRepository<OU.EV.Models.Vehicle>.Initialize();
         }
     }
 }

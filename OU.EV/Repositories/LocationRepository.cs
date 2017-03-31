@@ -4,17 +4,15 @@ using Microsoft.Azure.Documents.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace OU.EV
+namespace OU.EV.Repositories
 {
-    public static class DocumentDBRepository<T> where T : class
+    public static class LocationRepository<T> where T : class
     {
-        private static readonly string DatabaseId = ConfigurationManager.AppSettings["database"];
-        private static readonly string CollectionId = ConfigurationManager.AppSettings["collection"];
+        private static readonly string DatabaseId = "EV";
+        private static readonly string CollectionId = "Location";
         private static DocumentClient client;
 
         public static void Initialize()
@@ -65,11 +63,10 @@ namespace OU.EV
             }
         }
 
-        public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
+        public static async Task<IEnumerable<T>> GetItemsAsync()
         {
             IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
                 UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId))
-                .Where(predicate)
                 .AsDocumentQuery();
 
             List<T> results = new List<T>();
@@ -89,6 +86,11 @@ namespace OU.EV
         public static async Task<Document> UpdateItemAsync(string id, T item)
         {
             return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), item);
+        }
+
+        public static async Task DeleteItemAsync(string id)
+        {
+            await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
         }
 
         public static async Task<T> GetItemAsync(string id)

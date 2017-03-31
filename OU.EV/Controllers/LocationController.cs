@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Net;
 using System.Threading.Tasks;
 using OU.EV.Models;
@@ -10,13 +6,13 @@ using OU.EV.Repositories;
 
 namespace OU.EV.Controllers
 {
-    public class ItemController : Controller
+    public class LocationController : Controller
     {
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
-            var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
-            return View(items);
+            var locations = await LocationRepository<Location>.GetItemsAsync();
+            return View(locations);
         }
 
         [ActionName("Create")]
@@ -28,62 +24,62 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Building,Type,Working")] Location location)
         {
             if (ModelState.IsValid)
             {
-                await DocumentDBRepository<Item>.CreateItemAsync(item);
+                await LocationRepository<Location>.CreateItemAsync(location);
                 return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View(location);
         }
 
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Building,Type,Working")] Location location)
         {
             if (ModelState.IsValid)
             {
-                await DocumentDBRepository<Item>.UpdateItemAsync(item.Id, item);
+                await LocationRepository<Location>.UpdateItemAsync(location.Id, location);
                 return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View(location);
         }
 
         [ActionName("Edit")]
-        public async Task<ActionResult> EditAsync(string id)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Item item = await DocumentDBRepository<Item>.GetItemAsync(id);
-            if (item == null)
+            Location location = await LocationRepository<Location>.GetItemAsync(id);
+            if (location == null)
             {
                 return HttpNotFound();
             }
 
-            return View(item);
+            return View(location);
         }
         [ActionName("Delete")]
-        public async Task<ActionResult> DeleteAsync(string id)
+        public async Task<ActionResult> DeleteAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Item item = await DocumentDBRepository<Item>.GetItemAsync(id);
-            if (item == null)
+            Location location = await LocationRepository<Location>.GetItemAsync(id);
+            if (location == null)
             {
                 return HttpNotFound();
             }
 
-            return View(item);
+            return View(location);
         }
 
         [HttpPost]
@@ -91,15 +87,15 @@ namespace OU.EV.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
-            await DocumentDBRepository<Item>.DeleteItemAsync(id);
+            await LocationRepository<Location>.DeleteItemAsync(id);
             return RedirectToAction("Index");
         }
 
         [ActionName("Details")]
-        public async Task<ActionResult> DetailsAsync(string id)
+        public async Task<ActionResult> DetailsAsync([Bind(Include = "Id")] string id)
         {
-            Item item = await DocumentDBRepository<Item>.GetItemAsync(id);
-            return View(item);
+            Location location = await LocationRepository<Location>.GetItemAsync(id);
+            return View(location);
         }
     }
 }
