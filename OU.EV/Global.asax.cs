@@ -17,8 +17,8 @@ namespace OU.EV
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DocumentDBRepository<OU.EV.Models.Item>.Initialize();
             VehicleRepository<OU.EV.Models.Vehicle>.Initialize();
+            LocationRepository<OU.EV.Models.Location>.Initialize();
         }
     }
 }

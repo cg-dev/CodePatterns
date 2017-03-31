@@ -5,7 +5,7 @@ namespace OU.EV.Models
     public class Location
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty(PropertyName = "building")]
         public string Building { get; set; }
@@ -15,5 +15,9 @@ namespace OU.EV.Models
 
         [JsonProperty(PropertyName = "isWorking")]
         public bool Working { get; set; }
+
+        [JsonProperty(PropertyName = "points")]
+        public int Points { get; set; }
+
     }
 }

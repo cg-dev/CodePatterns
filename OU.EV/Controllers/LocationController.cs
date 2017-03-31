@@ -24,7 +24,7 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Building,Type,Working")] Location location)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -38,11 +38,11 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Building,Type,Working")] Location location)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
         {
             if (ModelState.IsValid)
             {
-                await LocationRepository<Location>.UpdateItemAsync(location.Id, location);
+                await LocationRepository<Location>.UpdateItemAsync(location.Code, location);
                 return RedirectToAction("Index");
             }
 
@@ -50,7 +50,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Edit")]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Code")] string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace OU.EV.Controllers
             return View(location);
         }
         [ActionName("Delete")]
-        public async Task<ActionResult> DeleteAsync([Bind(Include = "Id")] string id)
+        public async Task<ActionResult> DeleteAsync([Bind(Include = "Code")] string id)
         {
             if (id == null)
             {
@@ -85,14 +85,14 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
+        public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Code")] string id)
         {
             await LocationRepository<Location>.DeleteItemAsync(id);
             return RedirectToAction("Index");
         }
 
         [ActionName("Details")]
-        public async Task<ActionResult> DetailsAsync([Bind(Include = "Id")] string id)
+        public async Task<ActionResult> DetailsAsync([Bind(Include = "Code")] string id)
         {
             Location location = await LocationRepository<Location>.GetItemAsync(id);
             return View(location);
