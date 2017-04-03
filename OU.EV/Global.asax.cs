@@ -19,6 +19,7 @@ namespace OU.EV
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             VehicleRepository<OU.EV.Models.Vehicle>.Initialize();
             LocationRepository<OU.EV.Models.Location>.Initialize();
+            SlotRepository<OU.EV.Models.Slot>.Initialize();
         }
     }
 }

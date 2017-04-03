@@ -143,9 +143,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Models\Slot.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Repositories\SlotRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,6 +221,11 @@
     <Content Include="Views\Location\Delete.cshtml" />
     <Content Include="Views\Location\Details.cshtml" />
     <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Slot\Index.cshtml" />
+    <Content Include="Views\Slot\Create.cshtml" />
+    <Content Include="Views\Slot\Edit.cshtml" />
+    <Content Include="Views\Slot\Delete.cshtml" />
+    <Content Include="Views\Slot\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

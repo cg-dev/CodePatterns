@@ -3,16 +3,18 @@ using System.Net;
 using System.Threading.Tasks;
 using OU.EV.Models;
 using OU.EV.Repositories;
+using System.Linq;
+
 
 namespace OU.EV.Controllers
 {
-    public class LocationController : Controller
+    public class SlotController : Controller
     {
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
-            var locations = await LocationRepository<Location>.GetItemsAsync();
-            return View(locations);
+            var slots = await SlotRepository<Slot>.GetItemsAsync();
+            return View(slots.OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]
@@ -24,84 +26,84 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
+        [Authorize(Roles = "OU-EV-Admins")]
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
             {
-                await LocationRepository<Location>.CreateItemAsync(location);
+                await SlotRepository<Slot>.CreateItemAsync(slot);
                 return RedirectToAction("Index");
             }
 
-            return View(location);
+            return View(slot);
         }
 
         [HttpPost]
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
+        [Authorize(Roles = "OU-EV-Admins")]
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
             {
-                await LocationRepository<Location>.UpdateItemAsync(location.Code, location);
+                await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
                 return RedirectToAction("Index");
             }
 
-            return View(location);
+            return View(slot);
         }
 
         [ActionName("Edit")]
         [Authorize(Roles = "OU-EV-Admins")]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Code")] string id)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Location location = await LocationRepository<Location>.GetItemAsync(id);
-            if (location == null)
+            Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
+            if (slot == null)
             {
                 return HttpNotFound();
             }
 
-            return View(location);
+            return View(slot);
         }
         [ActionName("Delete")]
         [Authorize(Roles = "OU-EV-Admins")]
-        public async Task<ActionResult> DeleteAsync([Bind(Include = "Code")] string id)
+        public async Task<ActionResult> DeleteAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Location location = await LocationRepository<Location>.GetItemAsync(id);
-            if (location == null)
+            Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
+            if (slot == null)
             {
                 return HttpNotFound();
             }
 
-            return View(location);
+            return View(slot);
         }
 
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "OU-EV-Admins")]
-        public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Code")] string id)
+        public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
-            await LocationRepository<Location>.DeleteItemAsync(id);
+            await SlotRepository<Slot>.DeleteItemAsync(id);
             return RedirectToAction("Index");
         }
 
         [ActionName("Details")]
-        public async Task<ActionResult> DetailsAsync([Bind(Include = "Code")] string id)
+        public async Task<ActionResult> DetailsAsync([Bind(Include = "Id")] string id)
         {
-            Location location = await LocationRepository<Location>.GetItemAsync(id);
-            return View(location);
+            Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
+            return View(slot);
         }
     }
 }
