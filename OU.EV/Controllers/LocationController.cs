@@ -9,6 +9,7 @@ namespace OU.EV.Controllers
     public class LocationController : Controller
     {
         [ActionName("Index")]
+        [Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
             var locations = await LocationRepository<Location>.GetItemsAsync();
@@ -98,6 +99,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Details")]
+        [Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Code")] string id)
         {
             Location location = await LocationRepository<Location>.GetItemAsync(id);

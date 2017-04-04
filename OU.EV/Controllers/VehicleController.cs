@@ -9,6 +9,7 @@ namespace OU.EV.Controllers
     public class VehicleController : Controller
     {
         [ActionName("Index")]
+        [Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
             var vehicles = await VehicleRepository<Vehicle>.GetItemsAsync();
@@ -98,6 +99,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Details")]
+        [Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Registration")] string id)
         {
             Vehicle vehicle = await VehicleRepository<Vehicle>.GetItemAsync(id);
