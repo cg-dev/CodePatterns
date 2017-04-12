@@ -3,29 +3,28 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>OU EV Charging Monitor</h1>
+    <p class="lead">OU EV Charging Monitor is a web application that allows users to see what the situation is with regard to vehicles that are
+                    being charged and those that are waiting for spaces or points to become free.</p>
+    <p>When you arrive on campus you should raise a new slot identifying where your vehicle is and, if you are on a charging point or in an EV waiting
+       bay, the state of the charging points and waiting bays at the location where you have parked.</p>
+    <p>As vehicles are moved on and off the charging points, emails will be generated and sent to the next person in line.</p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>Vehicles</h2>
+        <p>The vehicle section allows administrators to add, change and remove deyails of vehicles and their owners that are in the OU EV Scheme.</p>
+        <p class="btn btn-default">@Html.ActionLink("Vehicles", "Index", "Vehicle")</p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Locations</h2>
+        <p>The locations page provides administrators with the ability to maintain details of the charging points and waiting areas around the campus.</p>
+        <p class="btn btn-default">@Html.ActionLink("Locations", "Index", "Location")</p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Slots</h2>
+        <p>Slots are what scheme members use to register their arrival on campus and to provide details of the charging and waiting bays throughout the day.</p>
+        <p class="btn btn-default">@Html.ActionLink("Slots", "Index", "Slot")</p>
     </div>
 </div>
