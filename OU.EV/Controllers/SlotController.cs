@@ -11,7 +11,7 @@ namespace OU.EV.Controllers
     public class SlotController : Controller
     {
         [ActionName("Index")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
             var slots = await SlotRepository<Slot>.GetItemsAsync();
@@ -19,7 +19,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync()
         {
             return View();
@@ -28,7 +28,7 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
@@ -43,7 +43,7 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace OU.EV.Controllers
             return View(slot);
         }
         [ActionName("Delete")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DeleteAsync([Bind(Include = "Id")] string id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
             await SlotRepository<Slot>.DeleteItemAsync(id);
@@ -101,7 +101,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Details")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Id")] string id)
         {
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);

@@ -9,7 +9,7 @@ namespace OU.EV.Controllers
     public class LocationController : Controller
     {
         [ActionName("Index")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
             var locations = await LocationRepository<Location>.GetItemsAsync();
@@ -17,7 +17,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
             return View();
@@ -25,7 +25,7 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
         {
@@ -40,7 +40,7 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
         {
@@ -54,7 +54,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Code")] string id)
         {
             if (id == null)
@@ -71,7 +71,7 @@ namespace OU.EV.Controllers
             return View(location);
         }
         [ActionName("Delete")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> DeleteAsync([Bind(Include = "Code")] string id)
         {
             if (id == null)
@@ -91,7 +91,7 @@ namespace OU.EV.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Code")] string id)
         {
             await LocationRepository<Location>.DeleteItemAsync(id);
@@ -99,7 +99,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Details")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Code")] string id)
         {
             Location location = await LocationRepository<Location>.GetItemAsync(id);

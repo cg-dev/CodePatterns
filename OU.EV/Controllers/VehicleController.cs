@@ -9,7 +9,7 @@ namespace OU.EV.Controllers
     public class VehicleController : Controller
     {
         [ActionName("Index")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
             var vehicles = await VehicleRepository<Vehicle>.GetItemsAsync();
@@ -17,7 +17,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
             return View();
@@ -25,7 +25,7 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Create")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Registration,Make,Model,Colour,Forename,Surname,Email")] Vehicle vehicle)
         {
@@ -40,7 +40,7 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync([Bind(Include = "Registration,Make,Model,Colour,Forename,Surname,Email")] Vehicle vehicle)
         {
@@ -54,7 +54,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Edit")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Registration")] string id)
         {
             if (id == null)
@@ -71,7 +71,7 @@ namespace OU.EV.Controllers
             return View(vehicle);
         }
         [ActionName("Delete")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> DeleteAsync([Bind(Include = "Registration")] string id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace OU.EV.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        [Authorize(Roles = "OU-EV-Admins")]
+        //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Registration")] string id)
         {
@@ -99,7 +99,7 @@ namespace OU.EV.Controllers
         }
 
         [ActionName("Details")]
-        [Authorize(Roles = "OU-EV-Users")]
+        //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Registration")] string id)
         {
             Vehicle vehicle = await VehicleRepository<Vehicle>.GetItemAsync(id);
