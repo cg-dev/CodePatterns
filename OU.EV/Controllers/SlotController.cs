@@ -14,30 +14,49 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
-            var slots = await SlotRepository<Slot>.GetItemsAsync();
-            return View(slots.OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+            var slotsVM = new SlotsVM
+            {
+                Slots = await SlotRepository<Slot>.GetItemsAsync()
+            };
+            return View(slotsVM.Slots.OrderBy(s => s.Location).ThenBy(s => s.Status).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync()
         {
-            return View();
+            var slotVM = new SlotVM
+            {
+                _Statuses = await StatusRepository<Status>.GetItemsAsync()
+            };
+            return View(slotVM);
         }
 
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Type,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] SlotVM slotVM)
         {
             if (ModelState.IsValid)
             {
+                var slot = new Slot
+                {
+                    Arrival = slotVM.Arrival,
+                    ChargeStartTime = slotVM.ChargeStartTime,
+                    Duration = slotVM.Duration,
+                    FreePoints = slotVM.FreePoints,
+                    FreeSpaces = slotVM.FreeSpaces,
+                    Location = slotVM.Location,
+                    Message = slotVM.Message,
+                    Status = slotVM.Status,
+                    Type = slotVM.Type
+                };
                 await SlotRepository<Slot>.CreateItemAsync(slot);
                 return RedirectToAction("Index");
             }
 
-            return View(slot);
+            return View(slotVM);
         }
 
         [HttpPost]

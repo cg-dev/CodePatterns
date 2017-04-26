@@ -20,6 +20,7 @@ namespace OU.EV
             VehicleRepository<OU.EV.Models.Vehicle>.Initialize();
             LocationRepository<OU.EV.Models.Location>.Initialize();
             SlotRepository<OU.EV.Models.Slot>.Initialize();
+            StatusRepository<OU.EV.Models.Status>.Initialize();
         }
     }
 }
