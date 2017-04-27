@@ -8,6 +8,8 @@ using System.Linq;
 
 namespace OU.EV.Controllers
 {
+    using System;
+
     public class SlotController : Controller
     {
         [ActionName("Index")]
@@ -15,14 +17,23 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> IndexAsync()
         {
             var slots = await SlotRepository<Slot>.GetItemsAsync();
-            return View(slots.OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+            return this.View(slots.OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync()
         {
-            return View();
+            var tzi = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+            var now = DateTime.Now.AddHours(tzi.IsDaylightSavingTime(DateTime.Today) ? 1 : 0);
+
+            var slot = new Slot
+                       {
+                           Arrival = now,
+                           ChargeStartTime = now
+                       };
+
+            return this.View(slot);
         }
 
         [HttpPost]
@@ -31,13 +42,13 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.CreateItemAsync(slot);
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
 
-            return View(slot);
+            return this.View(slot);
         }
 
         [HttpPost]
@@ -46,13 +57,13 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
-                return RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
 
-            return View(slot);
+            return this.View(slot);
         }
 
         [ActionName("Edit")]
@@ -67,10 +78,10 @@ namespace OU.EV.Controllers
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
             if (slot == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
 
-            return View(slot);
+            return this.View(slot);
         }
         [ActionName("Delete")]
         //[Authorize(Roles = "OU-EV-Users")]
@@ -84,10 +95,10 @@ namespace OU.EV.Controllers
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
             if (slot == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
 
-            return View(slot);
+            return this.View(slot);
         }
 
         [HttpPost]
@@ -97,7 +108,7 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
             await SlotRepository<Slot>.DeleteItemAsync(id);
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         [ActionName("Details")]
@@ -105,7 +116,7 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> DetailsAsync([Bind(Include = "Id")] string id)
         {
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
-            return View(slot);
+            return this.View(slot);
         }
     }
 }

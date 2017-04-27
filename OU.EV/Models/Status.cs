@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace OU.EV.Models
+﻿namespace OU.EV.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum Status
     {
         [Display(Name = "Waiting Near By")]
