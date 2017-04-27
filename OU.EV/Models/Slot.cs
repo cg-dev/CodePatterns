@@ -14,9 +14,6 @@ namespace OU.EV.Models
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
 
-        [JsonProperty(PropertyName = "status")]
-        public int Status { get; set; }
-
         [JsonProperty(PropertyName = "duration")]
         public TimeSpan Duration { get; set; }
 

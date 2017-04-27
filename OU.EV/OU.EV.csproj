@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44371</IISExpressSSLPort>
+    <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -146,10 +146,8 @@
     <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
-    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Slot.cs" />
     <Compile Include="Models\Location.cs" />
-    <Compile Include="Repositories\StatusRepository.cs" />
     <Compile Include="Repositories\SlotRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
@@ -158,8 +156,6 @@
     </Compile>
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\SlotVM.cs" />
-    <Compile Include="ViewModels\SlotsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
