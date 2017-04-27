@@ -29,7 +29,7 @@ namespace OU.EV.Controllers
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
             {
@@ -44,7 +44,7 @@ namespace OU.EV.Controllers
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Type,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
         {
             if (ModelState.IsValid)
             {

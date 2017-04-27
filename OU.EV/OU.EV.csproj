@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44371</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -148,6 +148,7 @@
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Models\Slot.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Repositories\SlotRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
