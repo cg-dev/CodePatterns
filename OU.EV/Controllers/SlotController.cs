@@ -25,6 +25,8 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync()
         {
+            // todo: Populate dropdown for locations from database
+            // todo: Pass in and display the max number of working charge points and waiting bays
             var tzi = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
             var now = DateTime.Now.AddHours(tzi.IsDaylightSavingTime(DateTime.Today) ? 1 : 0);
 
@@ -73,6 +75,8 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
+            // todo: Populate dropdown for locations from database
+            // todo: Pass in and display the max number of working charge points and waiting bays
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
