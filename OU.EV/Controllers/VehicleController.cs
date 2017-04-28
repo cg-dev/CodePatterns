@@ -20,6 +20,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
+            // todo: Do not allow duplicate codes to be entered
             return View();
         }
 
@@ -57,6 +58,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Registration")] string id)
         {
+            // todo: prevent registration from being edited
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

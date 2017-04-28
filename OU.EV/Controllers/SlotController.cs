@@ -16,8 +16,9 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
+            // todo: remove any slots before today
             var slots = await SlotRepository<Slot>.GetItemsAsync();
-            return this.View(slots.OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+            return this.View(slots.Where(s => s.Status != Status.Completed).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]
@@ -45,6 +46,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.CreateItemAsync(slot);
+                // todo: send appropriate emails
                 return this.RedirectToAction("Index");
             }
 
@@ -60,6 +62,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
+                // todo: send appropriate emails
                 return this.RedirectToAction("Index");
             }
 

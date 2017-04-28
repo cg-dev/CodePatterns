@@ -20,6 +20,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
+            // todo: Do not allow duplicate codes to be entered
             return View();
         }
 
@@ -27,7 +28,7 @@ namespace OU.EV.Controllers
         [ActionName("Create")]
         //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,ChargingPoints,WaitingBays")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +43,7 @@ namespace OU.EV.Controllers
         [ActionName("Edit")]
         //[Authorize(Roles = "OU-EV-Admins")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Code,Building,Type,Working,Points")] Location location)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Code,Building,ChargingPoints,WaitingBays")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Code")] string id)
         {
+            // todo: prevent code from being edited
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

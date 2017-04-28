@@ -2,6 +2,8 @@
 
 namespace OU.EV.Models
 {
+    using System.ComponentModel;
+
     public class Location
     {
         [JsonProperty(PropertyName = "id")]
@@ -10,14 +12,12 @@ namespace OU.EV.Models
         [JsonProperty(PropertyName = "building")]
         public string Building { get; set; }
 
-        [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        [JsonProperty(PropertyName = "chargingPoints")]
+        [DisplayName("Working Charging Points")]
+        public int ChargingPoints { get; set; }
 
-        [JsonProperty(PropertyName = "isWorking")]
-        public bool Working { get; set; }
-
-        [JsonProperty(PropertyName = "points")]
-        public int Points { get; set; }
-
+        [JsonProperty(PropertyName = "waitingBays")]
+        [DisplayName("Waiting Bays")]
+        public int WaitingBays { get; set; }
     }
 }
