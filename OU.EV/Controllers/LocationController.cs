@@ -58,7 +58,6 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Code")] string id)
         {
-            // todo: prevent code from being edited
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

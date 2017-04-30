@@ -14,7 +14,7 @@ namespace AutofacWS
         [OperationContract]
         IResponse GetDataUsingDataContract(IRequest request);
 
-        // TODO: Add your service operations here
+        // todo: Add your service operations here
     }
 
     public interface IResponse

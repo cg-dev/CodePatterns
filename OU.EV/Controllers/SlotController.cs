@@ -25,6 +25,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync()
         {
+            // todo: populate dropdown for vehicles/owners from database
             // todo: Populate dropdown for locations from database
             // todo: Pass in and display the max number of working charge points and waiting bays
             var tzi = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
@@ -75,6 +76,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
+            // todo: prevent vehicle/owner from being edited
             // todo: Populate dropdown for locations from database
             // todo: Pass in and display the max number of working charge points and waiting bays
             if (id == null)
