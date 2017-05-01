@@ -16,7 +16,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
-            // todo: remove any slots before today
+            await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
             var slots = await SlotRepository<Slot>.GetItemsAsync();
             return this.View(slots.Where(s => s.Status != Status.Completed).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }

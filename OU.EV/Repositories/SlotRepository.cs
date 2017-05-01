@@ -2,10 +2,12 @@
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Threading.Tasks;
+using OU.EV.Models;
 
 namespace OU.EV.Repositories
 {
@@ -91,6 +93,16 @@ namespace OU.EV.Repositories
         public static async Task DeleteItemAsync(string id)
         {
             await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+        }
+
+        public static async Task DeleteItemsAsync(Func<Slot, bool> condition)
+        {
+            var allSlots = await SlotRepository<Slot>.GetItemsAsync();
+
+            foreach (var slot in allSlots.Where(condition))
+            {
+                await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, slot.Id));
+            }
         }
 
         public static async Task<T> GetItemAsync(string id)
