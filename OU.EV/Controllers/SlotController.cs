@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using OU.EV.Models;
 using OU.EV.Repositories;
 using System.Linq;
-
+using OU.EV.ViewModels;
 
 namespace OU.EV.Controllers
 {
     using System;
+
+    using AutoMapper;
 
     public class SlotController : Controller
     {
@@ -26,7 +28,6 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> CreateAsync()
         {
             // todo: populate dropdown for vehicles/owners from database
-            // todo: Populate dropdown for locations from database
             // todo: Pass in and display the max number of working charge points and waiting bays
             var tzi = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
             var now = DateTime.Now.AddHours(tzi.IsDaylightSavingTime(DateTime.Today) ? 1 : 0);
@@ -37,7 +38,9 @@ namespace OU.EV.Controllers
                            ChargeStartTime = now
                        };
 
-            return this.View(slot);
+            var slotViewModel = Mapper.Map<SlotViewModel>(slot);
+            slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
+            return this.View(slotViewModel);
         }
 
         [HttpPost]
