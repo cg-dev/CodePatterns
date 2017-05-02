@@ -32,14 +32,12 @@ namespace OU.EV.Controllers
             var tzi = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
             var now = DateTime.Now.AddHours(tzi.IsDaylightSavingTime(DateTime.Today) ? 1 : 0);
 
-            var slot = new Slot
-                       {
-                           Arrival = now,
-                           ChargeStartTime = now
-                       };
-
-            var slotViewModel = Mapper.Map<SlotViewModel>(slot);
-            slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
+            var slotViewModel = new SlotViewModel
+            {
+                Arrival = now,
+                ChargeStartTime = now,
+                Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building")
+            };
             return this.View(slotViewModel);
         }
 
@@ -47,32 +45,34 @@ namespace OU.EV.Controllers
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
+        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] SlotViewModel slotViewModel)
         {
             if (this.ModelState.IsValid)
             {
+                var slot = Mapper.Map<Slot>(slotViewModel);
                 await SlotRepository<Slot>.CreateItemAsync(slot);
                 // todo: send appropriate emails
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(slot);
+            return this.View(slotViewModel);
         }
 
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] Slot slot)
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] SlotViewModel slotViewModel)
         {
             if (this.ModelState.IsValid)
             {
+                var slot = Mapper.Map<Slot>(slotViewModel);
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
                 // todo: send appropriate emails
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(slot);
+            return this.View(slotViewModel);
         }
 
         [ActionName("Edit")]
@@ -80,21 +80,24 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
         {
             // todo: prevent vehicle/owner from being edited
-            // todo: Populate dropdown for locations from database
             // todo: Pass in and display the max number of working charge points and waiting bays
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
+            var slot = await SlotRepository<Slot>.GetItemAsync(id);
             if (slot == null)
             {
                 return this.HttpNotFound();
             }
 
-            return this.View(slot);
+            var slotViewModel = Mapper.Map<SlotViewModel>(slot);
+            slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
+
+            return this.View(slotViewModel);
         }
+
         [ActionName("Delete")]
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> DeleteAsync([Bind(Include = "Id")] string id)
