@@ -1,14 +1,13 @@
 ﻿using OU.EV.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace OU.EV
 {
+    using AutoMapper;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
@@ -20,6 +19,9 @@ namespace OU.EV
             VehicleRepository<OU.EV.Models.Vehicle>.Initialize();
             LocationRepository<OU.EV.Models.Location>.Initialize();
             SlotRepository<OU.EV.Models.Slot>.Initialize();
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<Models.Slot, ViewModels.SlotViewModel>().ReverseMap();
+            });
         }
     }
 }
