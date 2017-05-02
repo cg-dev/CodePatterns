@@ -20,7 +20,6 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
-            // todo: Do not allow duplicate codes to be entered
             return View();
         }
 
@@ -30,6 +29,22 @@ namespace OU.EV.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Registration,Make,Model,Colour,Forename,Surname,Email")] Vehicle vehicle)
         {
+            if (string.IsNullOrEmpty(vehicle.Registration))
+            {
+                ModelState.AddModelError("Registration", "Registration is required");
+            }
+            else
+            {
+                vehicle.Registration = vehicle.Registration.ToUpper();
+                var existingVehicle = await VehicleRepository<Vehicle>.GetItemAsync(vehicle.Registration);
+                if (existingVehicle != null)
+                {
+                    ModelState.AddModelError("Registration", "Registration has already been used for an existing vehicle");
+                }
+            }
+
+            // todo: Validate vehicle details
+
             if (ModelState.IsValid)
             {
                 await VehicleRepository<Vehicle>.CreateItemAsync(vehicle);
