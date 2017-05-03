@@ -1,4 +1,4 @@
-﻿@model OU.EV.Models.Slot
+﻿@model OU.EV.ViewModels.SlotViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,6 +11,14 @@
     <h4>Slot</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Location)
         </dt>
@@ -25,14 +33,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
         </dd>
 
         <dt>
@@ -57,6 +57,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.ChargeStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChargeEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChargeEndTime)
         </dd>
 
     </dl>

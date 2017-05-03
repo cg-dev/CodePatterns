@@ -20,7 +20,6 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Admins")]
         public async Task<ActionResult> CreateAsync()
         {
-            // todo: Do not allow duplicate codes to be entered
             return View();
         }
 
@@ -30,6 +29,20 @@ namespace OU.EV.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Code,Building,ChargingPoints,WaitingBays")] Location location)
         {
+            if (string.IsNullOrEmpty(location.Code))
+            {
+                ModelState.AddModelError("Code", "Location code is required");
+            }
+            else
+            {
+                location.Code = location.Code.ToUpper();
+                var existingLocation = await LocationRepository<Location>.GetItemAsync(location.Code);
+                if (existingLocation != null)
+                {
+                    ModelState.AddModelError("Code", "Location code has already been used for an existing location");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 await LocationRepository<Location>.CreateItemAsync(location);

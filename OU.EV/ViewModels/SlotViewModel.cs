@@ -11,37 +11,40 @@
 
     public class SlotViewModel
     {
-        [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "location")]
+        [DisplayName("EV Owner")]
+        public string Vehicle { get; set; }
+
         public string Location { get; set; }
 
-        [JsonProperty(PropertyName = "status")]
         public Status Status { get; set; }
 
-        [JsonProperty(PropertyName = "duration")]
         public TimeSpan Duration { get; set; }
 
-        [JsonProperty(PropertyName = "message")]
         public string Message { get; set; }
 
-        [JsonProperty(PropertyName = "freeSpaces")]
         [DisplayName("Free Spaces")]
         public int FreeSpaces { get; set; }
 
-        [JsonProperty(PropertyName = "freePoints")]
         [DisplayName("Free Points")]
         public int FreePoints { get; set; }
 
-        [JsonProperty(PropertyName = "arrivalTime")]
         [DisplayName("Arrival Time")]
         public DateTime Arrival { get; set; }
 
-        [JsonProperty(PropertyName = "chargeStartTime")]
         [DisplayName("Charge Start Time")]
         public DateTime ChargeStartTime { get; set; }
 
+
+        [DisplayName("Charge End Time")]
+        public DateTime ChargeEndTime
+        {
+            get { return ChargeStartTime.Add(Duration); }
+        }
+
         public IEnumerable<SelectListItem> Locations { get; set; }
+
+        public IEnumerable<SelectListItem> Vehicles { get; set; }
     }
 }
