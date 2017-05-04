@@ -65,24 +65,24 @@
                 @item.Arrival.ToString("dd MMM yyyy")
             </td>
             <td>
-                @item.Arrival.TimeOfDay.ToString("HH:mm")
+                @Html.DisplayFor(modelItem => item.Arrival.TimeOfDay)
             </td>
             <td>
                 @if (item.Status == OU.EV.Models.Status.OnCharge)
                 {
-                    @item.ChargeStartTime.ToString("HH:mm")
+                    @Html.DisplayFor(modelItem => item.ChargeStartTime.TimeOfDay)
                 }
             </td>
             <td>
                 @if (item.Status == OU.EV.Models.Status.OnCharge)
                 {
-                    @item.Duration.ToString("HH:mm")
+                    @Html.DisplayFor(modelItem => item.Duration)
                 }
             </td>
             <td>
                 @if (item.Status == OU.EV.Models.Status.OnCharge)
                 {
-                    @item.ChargeEndTime.ToString("HH:mm")
+                    @Html.DisplayFor(modelItem => item.ChargeEndTime.TimeOfDay)
                 }
             </td>
             <td>
