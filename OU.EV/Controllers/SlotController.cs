@@ -19,8 +19,14 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> IndexAsync()
         {
             await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
-            var slots = await SlotRepository<Slot>.GetItemsAsync();
-            return this.View(slots.Where(s => s.Status != Status.Completed).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+            var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
+            foreach (var slot in slots)
+            {
+                var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+                slot.EvOwner = vehicle?.FullName ?? "Not known";
+                slot.ChargeEndTime = slot.ChargeStartTime.Add(slot.Duration);
+            }
+            return View(slots.Where(s => s.Status != Status.Completed).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]
@@ -37,7 +43,7 @@ namespace OU.EV.Controllers
                 Vehicles = new SelectList(await VehicleRepository<Vehicle>.GetItemsAsync(), "Registration", "FullName"),
                 Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building")
             };
-            return this.View(slotViewModel);
+            return View(slotViewModel);
         }
 
         [HttpPost]
@@ -51,10 +57,10 @@ namespace OU.EV.Controllers
                 var slot = Mapper.Map<Slot>(slotViewModel);
                 await SlotRepository<Slot>.CreateItemAsync(slot);
                 // todo: send appropriate emails
-                return this.RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
-            return this.View(slotViewModel);
+            return View(slotViewModel);
         }
 
         [HttpPost]
@@ -68,10 +74,10 @@ namespace OU.EV.Controllers
                 var slot = Mapper.Map<Slot>(slotViewModel);
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
                 // todo: send appropriate emails
-                return this.RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
-            return this.View(slotViewModel);
+            return View(slotViewModel);
         }
 
         [ActionName("Edit")]
@@ -86,14 +92,14 @@ namespace OU.EV.Controllers
             var slot = await SlotRepository<Slot>.GetItemAsync(id);
             if (slot == null)
             {
-                return this.HttpNotFound();
+                return HttpNotFound();
             }
 
             var slotViewModel = Mapper.Map<SlotViewModel>(slot);
             slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
             slotViewModel.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
 
-            return this.View(slotViewModel);
+            return View(slotViewModel);
         }
 
         [ActionName("Delete")]
@@ -108,10 +114,10 @@ namespace OU.EV.Controllers
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
             if (slot == null)
             {
-                return this.HttpNotFound();
+                return HttpNotFound();
             }
 
-            return this.View(slot);
+            return View(slot);
         }
 
         [HttpPost]
@@ -121,7 +127,7 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
             await SlotRepository<Slot>.DeleteItemAsync(id);
-            return this.RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         [ActionName("Details")]
@@ -130,7 +136,7 @@ namespace OU.EV.Controllers
         {
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
             var slotViewModel = Mapper.Map<SlotViewModel>(slot);
-            return this.View(slotViewModel);
+            return View(slotViewModel);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace OU.EV.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
+    [JsonObject(MemberSerialization.OptIn)]
     public class Slot
     {
         [JsonProperty(PropertyName = "id")]
@@ -41,5 +42,11 @@ namespace OU.EV.Models
         [JsonProperty(PropertyName = "chargeStartTime")]
         [DisplayName("Charge Start Time")]
         public DateTime ChargeStartTime { get; set; }
+
+        [DisplayName("EV Owner")]
+        public string EvOwner { get; set; }
+
+        [DisplayName("Charge End Time")]
+        public DateTime ChargeEndTime { get; set; }
     }
 }

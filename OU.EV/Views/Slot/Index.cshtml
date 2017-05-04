@@ -16,6 +16,9 @@
             @Html.DisplayNameFor(model => model.Vehicle)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.EvOwner)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
@@ -34,42 +37,60 @@
         <th>
             @Html.DisplayNameFor(model => model.Duration)
         </th>
-        <th>Estimated Finish Time</th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChargeEndTime)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehicle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
-        </td>
-        <td>
-            @item.Arrival.ToString("dd MMM yyyy")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arrival.TimeOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChargeStartTime.TimeOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EvOwner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @item.Arrival.ToString("dd MMM yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arrival.TimeOfDay)
+            </td>
+            <td>
+                @if (item.Status == OU.EV.Models.Status.OnCharge)
+                {
+                    @Html.DisplayFor(modelItem => item.ChargeStartTime.TimeOfDay)
+                }
+            </td>
+            <td>
+                @if (item.Status == OU.EV.Models.Status.OnCharge)
+                {
+                    @Html.DisplayFor(modelItem => item.Duration)
+                }
+            </td>
+            <td>
+                @if (item.Status == OU.EV.Models.Status.OnCharge)
+                {
+                    @Html.DisplayFor(modelItem => item.ChargeEndTime.TimeOfDay)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
