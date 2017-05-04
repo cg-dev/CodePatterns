@@ -13,8 +13,10 @@
     {
         public string Id { get; set; }
 
-        [DisplayName("EV Owner")]
         public string Vehicle { get; set; }
+
+        [DisplayName("EV Owner")]
+        public string EvOwner { get; set; }
 
         public string Location { get; set; }
 
@@ -35,7 +37,6 @@
 
         [DisplayName("Charge Start Time")]
         public DateTime ChargeStartTime { get; set; }
-
 
         [DisplayName("Charge End Time")]
         public DateTime ChargeEndTime

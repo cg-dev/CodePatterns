@@ -91,7 +91,7 @@ namespace OU.EV.Controllers
 
             var slotViewModel = Mapper.Map<SlotViewModel>(slot);
             slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
-            slotViewModel.Vehicle = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
+            slotViewModel.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
 
             return this.View(slotViewModel);
         }
