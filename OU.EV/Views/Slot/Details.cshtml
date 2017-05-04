@@ -56,7 +56,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChargeStartTime)
+            @*@Html.DisplayFor(model => model.ChargeStartTime)*@
+            @Model.ChargeStartTime.ToString("HH:MM")
         </dd>
 
         <dt>
@@ -64,7 +65,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Duration)
+            @*@Html.DisplayFor(model => model.Duration)*@
+            @Model.Duration.ToString("HH:mm")
         </dd>
 
         <dt>
@@ -72,7 +74,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChargeEndTime)
+            @*@Html.DisplayFor(model => model.ChargeEndTime)*@
+            @Model.ChargeEndTime.ToString("HH:mm")
         </dd>
 
     </dl>
