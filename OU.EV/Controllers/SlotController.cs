@@ -40,8 +40,8 @@ namespace OU.EV.Controllers
             {
                 Arrival = now,
                 ChargeStartTime = now,
-                Vehicles = new SelectList(await VehicleRepository<Vehicle>.GetItemsAsync(), "Registration", "FullName"),
-                Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building")
+                Vehicles = new SelectList((await VehicleRepository<Vehicle>.GetItemsAsync()).OrderBy(v => v.FullName), "Registration", "FullName"),
+                Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building")
             };
             return View(slotViewModel);
         }
@@ -96,7 +96,7 @@ namespace OU.EV.Controllers
             }
 
             var slotViewModel = Mapper.Map<SlotViewModel>(slot);
-            slotViewModel.Locations = new SelectList(await LocationRepository<Location>.GetItemsAsync(), "Building", "Building");
+            slotViewModel.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
             slotViewModel.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
 
             return View(slotViewModel);
