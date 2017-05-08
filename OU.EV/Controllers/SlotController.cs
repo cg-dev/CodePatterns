@@ -18,7 +18,7 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
-            await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
+            //await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
             var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
             foreach (var slot in slots)
             {
@@ -26,7 +26,7 @@ namespace OU.EV.Controllers
                 slot.EvOwner = vehicle?.FullName ?? "Not known";
                 slot.ChargeEndTime = slot.ChargeStartTime.Add(slot.Duration);
             }
-            return View(slots.Where(s => s.Status != Status.Completed).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+            return View(slots.Where(s => s.Status < Status.Completed && s.Arrival.Date >= DateTime.Today).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
         }
 
         [ActionName("Create")]

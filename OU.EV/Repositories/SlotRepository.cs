@@ -95,15 +95,15 @@ namespace OU.EV.Repositories
             await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
         }
 
-        public static async Task DeleteItemsAsync(Func<Slot, bool> condition)
-        {
-            var allSlots = await SlotRepository<Slot>.GetItemsAsync();
+        //public static async Task DeleteItemsAsync(Func<Slot, bool> condition)
+        //{
+        //    var allSlots = await SlotRepository<Slot>.GetItemsAsync();
 
-            foreach (var slot in allSlots.Where(condition))
-            {
-                await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, slot.Id));
-            }
-        }
+        //    foreach (var slot in allSlots.Where(condition))
+        //    {
+        //        await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, slot.Id));
+        //    }
+        //}
 
         public static async Task<T> GetItemAsync(string id)
         {

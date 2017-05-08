@@ -11,6 +11,8 @@
         [Display(Name = "On Charge")]
         OnCharge = 30,
         [Display(Name = "Completed")]
-        Completed = 40
+        Completed = 40,
+        [Display(Name = "No Charge Taken")]
+        NoCharge = 50
     }
 }

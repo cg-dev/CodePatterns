@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using OU.EV.Models;
 using OU.EV.Repositories;
+using System.Linq;
 
 namespace OU.EV.Controllers
 {
@@ -13,7 +14,7 @@ namespace OU.EV.Controllers
         public async Task<ActionResult> IndexAsync()
         {
             var vehicles = await VehicleRepository<Vehicle>.GetItemsAsync();
-            return View(vehicles);
+            return View(vehicles.OrderBy(v => v.Registration));
         }
 
         [ActionName("Create")]
