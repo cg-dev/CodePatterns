@@ -52,6 +52,8 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Vehicle,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] SlotViewModel slotViewModel)
         {
+            this.ValidateStatusAndDuration(slotViewModel);
+
             if (this.ModelState.IsValid)
             {
                 var slot = Mapper.Map<Slot>(slotViewModel);
@@ -69,6 +71,8 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> EditAsync([Bind(Include = "Id,Vehicle,Location,Status,Duration,Message,FreeSpaces,PreePoints,Arrival,ChargeStartTime")] SlotViewModel slotViewModel)
         {
+            this.ValidateStatusAndDuration(slotViewModel);
+
             if (this.ModelState.IsValid)
             {
                 var slot = Mapper.Map<Slot>(slotViewModel);
@@ -137,6 +141,14 @@ namespace OU.EV.Controllers
             Slot slot = await SlotRepository<Slot>.GetItemAsync(id);
             var slotViewModel = Mapper.Map<SlotViewModel>(slot);
             return View(slotViewModel);
+        }
+
+        private void ValidateStatusAndDuration(SlotViewModel slotViewModel)
+        {
+            if (slotViewModel.Status == Status.OnCharge && slotViewModel.Duration == new TimeSpan(0))
+            {
+                this.ModelState.AddModelError("Duration", "You must provide an estimated duration time for your charge");
+            }
         }
     }
 }
