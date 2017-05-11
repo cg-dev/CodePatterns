@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
     using Newtonsoft.Json;
@@ -20,6 +21,7 @@
 
         public string Location { get; set; }
 
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a status for this slot.")]
         public Status Status { get; set; }
 
         public TimeSpan Duration { get; set; }

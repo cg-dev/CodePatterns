@@ -145,9 +145,13 @@ namespace OU.EV.Controllers
 
         private void ValidateStatusAndDuration(SlotViewModel slotViewModel)
         {
+            if (slotViewModel.Status < 0)
+            {
+                this.ModelState.AddModelError("Status", "Please select a status for this slot.");
+            }
             if (slotViewModel.Status == Status.OnCharge && slotViewModel.Duration == new TimeSpan(0))
             {
-                this.ModelState.AddModelError("Duration", "You must provide an estimated duration time for your charge");
+                this.ModelState.AddModelError("Duration", "You must provide an estimated duration time for your charge.");
             }
         }
     }
