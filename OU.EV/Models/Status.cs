@@ -6,7 +6,7 @@
     {
         [Display(Name = "Waiting Near By")]
         WaitingNear = 10,
-        [Display(Name = "Waiting")]
+        [Display(Name = "Waiting In Bay")]
         Waiting = 20,
         [Display(Name = "On Charge")]
         OnCharge = 30,
