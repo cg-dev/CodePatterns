@@ -3,8 +3,11 @@ using System;
 
 namespace OU.EV.Models
 {
+    using OU.EV.Validations;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     [JsonObject(MemberSerialization.OptIn)]
     public class Slot
@@ -19,9 +22,11 @@ namespace OU.EV.Models
         public string Vehicle { get; set; }
 
         [JsonProperty(PropertyName = "status")]
+        [Range(10, 60, ErrorMessage = "Please select a status for this slot.")]
         public Status Status { get; set; }
 
         [JsonProperty(PropertyName = "duration")]
+        [RequiredForOnCharge]
         public TimeSpan Duration { get; set; }
 
         [JsonProperty(PropertyName = "message")]
@@ -48,5 +53,9 @@ namespace OU.EV.Models
 
         [DisplayName("Charge End Time")]
         public DateTime ChargeEndTime { get; set; }
+
+        public IEnumerable<SelectListItem> Locations { get; set; }
+
+        public IEnumerable<SelectListItem> Vehicles { get; set; }
     }
 }
