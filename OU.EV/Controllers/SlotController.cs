@@ -4,13 +4,15 @@ using System.Threading.Tasks;
 using OU.EV.Models;
 using OU.EV.Repositories;
 using System.Linq;
-//using OU.EV.ViewModels;
 
 namespace OU.EV.Controllers
 {
     using System;
 
     using AutoMapper;
+
+    using SendGrid;
+    using SendGrid.Helpers.Mail;
 
     public class SlotController : Controller
     {
@@ -55,7 +57,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.CreateItemAsync(slot);
-                // todo: send appropriate emails
+                //SendAppropriateEmails(slot).Wait();
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +76,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
-                // todo: send appropriate emails
+                //SendAppropriateEmails(slot).Wait();
                 return RedirectToAction("Index");
             }
 
@@ -139,6 +141,27 @@ namespace OU.EV.Controllers
         {
             var slot = await SlotRepository<Slot>.GetItemAsync(id);
             return View(slot);
+        }
+
+        // todo: send appropriate emails
+        static async Task SendAppropriateEmails(Slot slot)
+        {
+            if (slot.Status >= Status.OnCharge)
+            {
+                var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
+                foreach (var waitingSlot in slots.Where(s => s.Status < Status.OnCharge))
+                {
+                    var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(waitingSlot.Vehicle);
+                    var client = new SendGridClient(Environment.GetEnvironmentVariable(""));
+                    var from = new EmailAddress("noreply@open.ac.uk", "No reply");
+                    var subject = "Sending with SendGrid is Fun";
+                    var to = new EmailAddress(vehicle.Email, vehicle.FullName);
+                    var plainTextContent = "and easy to do anywhere, even with C#";
+                    var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+                    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                    await client.SendEmailAsync(msg);
+                }
+            }
         }
     }
 }

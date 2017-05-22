@@ -79,7 +79,7 @@ namespace OU.EV.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Vehicle vehicle = await VehicleRepository<Vehicle>.GetItemAsync(id);
+            var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(id);
             if (vehicle == null)
             {
                 return HttpNotFound();
