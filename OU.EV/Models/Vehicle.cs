@@ -22,12 +22,13 @@ namespace OU.EV.Models
         [JsonProperty(PropertyName = "surname")]
         public string Surname { get; set; }
 
+        [JsonProperty(PropertyName = "email")]
+        public string Email { get; set; }
+
+        [JsonIgnore]
         public string FullName
         {
             get { return $"{this.Forename} {this.Surname}"; }
         }
-
-        [JsonProperty(PropertyName = "email")]
-        public string Email { get; set; }
     }
 }
