@@ -5,12 +5,15 @@ using OU.EV.Models;
 using OU.EV.Repositories;
 using System.Linq;
 //using OU.EV.ViewModels;
+using System.Configuration;
 
 namespace OU.EV.Controllers
 {
     using System;
 
     using AutoMapper;
+    using SendGrid.Helpers.Mail;
+    using SendGrid;
 
     public class SlotController : Controller
     {
@@ -55,7 +58,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.CreateItemAsync(slot);
-                // todo: send appropriate emails
+                await SendEmails(slot);
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +77,7 @@ namespace OU.EV.Controllers
             if (this.ModelState.IsValid)
             {
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
-                // todo: send appropriate emails
+                await SendEmails(slot);
                 return RedirectToAction("Index");
             }
 
@@ -139,6 +142,39 @@ namespace OU.EV.Controllers
         {
             var slot = await SlotRepository<Slot>.GetItemAsync(id);
             return View(slot);
+        }
+
+        private async Task<int> SendEmails(Slot slot)
+        {
+            var emailsSent = 0;
+
+            var apiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+
+            if (apiKey != "DummyValue")
+            {
+                var changingVehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+
+                var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
+                foreach (var waitingSlot in slots.Where(s => s.Status < Status.OnCharge && s.Location == slot.Location).OrderBy(s => s.Arrival))
+                {
+                    var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+
+                    var client = new SendGridClient(apiKey);
+                    var from = new EmailAddress("noreply@ouevweb.co.uk", "No Reply");
+                    var subject = $"Notice of change of charging status for an EV at {slot.Location.ToString()}";
+                    var to = new EmailAddress(vehicle.Email, vehicle.FullName);
+                    var plainTextContent = $@"{changingVehicle.FullName} has changed their charging status at {slot.Location.ToString()} to {slot.Status.ToString()}.
+                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.
+                        This email has been sent to all EV owners who are waiting at {slot.Location.ToString()}";
+                    var htmlContent = $@"{changingVehicle.FullName} has changed their charging status at {slot.Location.ToString()} to {slot.Status.ToString()}<br/>.
+                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.<br/>
+                        This email has been sent to all EV owners who are waiting at {slot.Location.ToString()}";
+                    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                    emailsSent++;
+                }
+            }
+
+            return emailsSent;
         }
     }
 }
