@@ -144,37 +144,64 @@ namespace OU.EV.Controllers
             return View(slot);
         }
 
-        private async Task<int> SendEmails(Slot slot)
+        private async Task<int> SendEmails(Slot leavingSlot)
         {
             var emailsSent = 0;
 
             var apiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
 
-            if (apiKey != "DummyValue")
+            if (leavingSlot.Status >= Status.OnCharge && apiKey != "DummyValue")
             {
-                var changingVehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+                var leavingVehicle = await VehicleRepository<Vehicle>.GetItemAsync(leavingSlot.Vehicle);
 
                 var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
-                foreach (var waitingSlot in slots.Where(s => s.Status < Status.OnCharge && s.Location == slot.Location).OrderBy(s => s.Arrival))
+                foreach (var activeSlot in slots
+                    .Where(s => s.Status <= Status.OnCharge && s.Location == leavingSlot.Location && s.Vehicle != leavingVehicle.Registration)
+                    .OrderBy(s => s.Arrival))
                 {
-                    var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+                    var activeVehicle = await VehicleRepository<Vehicle>.GetItemAsync(activeSlot.Vehicle);
 
-                    var client = new SendGridClient(apiKey);
-                    var from = new EmailAddress("noreply@ouevweb.co.uk", "No Reply");
-                    var subject = $"Notice of change of charging status for an EV at {slot.Location.ToString()}";
-                    var to = new EmailAddress(vehicle.Email, vehicle.FullName);
-                    var plainTextContent = $@"{changingVehicle.FullName} has changed their charging status at {slot.Location.ToString()} to {slot.Status.ToString()}.
-                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.
-                        This email has been sent to all EV owners who are waiting at {slot.Location.ToString()}";
-                    var htmlContent = $@"{changingVehicle.FullName} has changed their charging status at {slot.Location.ToString()} to {slot.Status.ToString()}<br/>.
-                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.<br/>
-                        This email has been sent to all EV owners who are waiting at {slot.Location.ToString()}";
-                    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                    await this.SendEmailToWaitingVehicle(leavingSlot, apiKey, activeVehicle, leavingVehicle);
                     emailsSent++;
                 }
+                await this.SendEmailToLeavingVehicle(leavingSlot, apiKey, leavingVehicle, emailsSent);
             }
 
             return emailsSent;
+        }
+
+        private async Task SendEmailToWaitingVehicle(Slot leavingSlot, string apiKey, Vehicle activeVehicle, Vehicle leavingVehicle)
+        {
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
+            var subject = $"Notice of change of charging status for an EV at {leavingSlot.Location.ToString()} - sent to {activeVehicle.FullName}";
+            var to = new EmailAddress(activeVehicle.Email, activeVehicle.FullName);
+            var plainTextContent = $@"{leavingVehicle.FullName} has changed charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}.
+                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.
+                        {@"http://ou-ev-web.azurewebsites.net/Slot"}
+                        This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}";
+            var htmlContent = $@"<p>{leavingVehicle.FullName} has changed charging status at <bold>{leavingSlot.Location.ToString()}</bold> to <bold>{leavingSlot.Status.ToString()}</bold>.</p>
+                        <p>Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.</p>
+                        <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
+                        <p>This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}</p>";
+            var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
+            await client.SendEmailAsync(msg);
+        }
+
+        private async Task SendEmailToLeavingVehicle(Slot leavingSlot, string apiKey, Vehicle leavingVehicle, int emailsSent)
+        {
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
+            var subject = $"Thank you for updating your charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()} - sent to {leavingVehicle.FullName}";
+            var to = new EmailAddress(leavingVehicle.Email, leavingVehicle.FullName);
+            var plainTextContent = $@"{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.
+                        Please remember to keep the web page updated next time you use the university's charging facilities.
+                        {@"http://ou-ev-web.azurewebsites.net/Slot"}";
+            var htmlContent = $@"<p>{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.</p>
+                        <p>Please remember to keep the OU EV Carging Monitor slots page updated next time you use the university's charging facilities.</p>
+                        <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>";
+            var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
+            await client.SendEmailAsync(msg);
         }
     }
 }
