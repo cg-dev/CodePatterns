@@ -177,11 +177,11 @@ namespace OU.EV.Controllers
             var subject = $"Notice of change of charging status for an EV at {leavingSlot.Location.ToString()} - sent to {activeVehicle.FullName}";
             var to = new EmailAddress(activeVehicle.Email, activeVehicle.FullName);
             var plainTextContent = $@"{leavingVehicle.FullName} has changed charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}.
-                        Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.
+                        Please check waiting list on the website. You may be able to move your car into a waiting bay or put it on to charge.
                         {@"http://ou-ev-web.azurewebsites.net/Slot"}
                         This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}";
             var htmlContent = $@"<p>{leavingVehicle.FullName} has changed charging status at <bold>{leavingSlot.Location.ToString()}</bold> to <bold>{leavingSlot.Status.ToString()}</bold>.</p>
-                        <p>Please check waiting list on the website to see if you can move your car into the waiting bay or put it on to charge.</p>
+                        <p>Please check waiting list on the website. You may be able to move your car into a waiting bay or put it on to charge.</p>
                         <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
                         <p>This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}</p>";
             var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
@@ -198,7 +198,7 @@ namespace OU.EV.Controllers
                         Please remember to keep the web page updated next time you use the university's charging facilities.
                         {@"http://ou-ev-web.azurewebsites.net/Slot"}";
             var htmlContent = $@"<p>{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.</p>
-                        <p>Please remember to keep the OU EV Carging Monitor slots page updated next time you use the university's charging facilities.</p>
+                        <p>Please remember to keep the OU EV Charging Monitor slots page updated next time you use the university's charging facilities.</p>
                         <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>";
             var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
             await client.SendEmailAsync(msg);
