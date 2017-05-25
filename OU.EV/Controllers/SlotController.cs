@@ -174,7 +174,7 @@ namespace OU.EV.Controllers
         {
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
-            var subject = $"Notice of change of charging status for an EV at {leavingSlot.Location.ToString()} - sent to {activeVehicle.FullName}";
+            var subject = $"Notice of change of charging status for an EV at {leavingSlot.Location.ToString()}";
             var to = new EmailAddress(activeVehicle.Email, activeVehicle.FullName);
             var plainTextContent = $@"{leavingVehicle.FullName} has changed charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}.
                         Please check waiting list on the website. You may be able to move your car into a waiting bay or put it on to charge.
@@ -192,7 +192,7 @@ namespace OU.EV.Controllers
         {
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
-            var subject = $"Thank you for updating your charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()} - sent to {leavingVehicle.FullName}";
+            var subject = $"Thank you for updating your charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}";
             var to = new EmailAddress(leavingVehicle.Email, leavingVehicle.FullName);
             var plainTextContent = $@"{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.
                         Please remember to keep the web page updated next time you use the university's charging facilities.
