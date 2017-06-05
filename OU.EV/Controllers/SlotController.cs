@@ -10,6 +10,7 @@ using System.Configuration;
 namespace OU.EV.Controllers
 {
     using System;
+    using System.Collections.Generic;
 
     using AutoMapper;
     using SendGrid.Helpers.Mail;
@@ -21,7 +22,8 @@ namespace OU.EV.Controllers
         //[Authorize(Roles = "OU-EV-Users")]
         public async Task<ActionResult> IndexAsync()
         {
-            await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
+            await this.DeleteAllOldSlots();
+
             var slots = (await SlotRepository<Slot>.GetItemsAsync()).ToList();
             foreach (var slot in slots)
             {
@@ -30,6 +32,14 @@ namespace OU.EV.Controllers
                 slot.ChargeEndTime = slot.ChargeStartTime.Add(slot.Duration);
             }
             return View(slots.Where(s => s.Status < Status.Completed && s.Arrival.Date >= DateTime.Today).OrderBy(s => s.Location).ThenBy(s => s.Arrival));
+        }
+
+        private async Task DeleteAllOldSlots()
+        {
+            var onChargeSlotsToBeDeleted = (await SlotRepository<Slot>.GetItemsAsync()).Where(s => s.Status == Status.OnCharge && s.Arrival.Date < DateTime.Today).ToList();
+            this.SendEmailToOnChargeSlotsBeingDeleted(onChargeSlotsToBeDeleted);
+
+            await SlotRepository<Slot>.DeleteItemsAsync(s => s.Arrival.Date < DateTime.Today);
         }
 
         [ActionName("Create")]
@@ -144,6 +154,20 @@ namespace OU.EV.Controllers
             return View(slot);
         }
 
+        private async Task SendEmailToOnChargeSlotsBeingDeleted(List<Slot> onChargeSlotsBeingDeleted)
+        {
+            var apiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+
+            if (apiKey != "DummyValue") {
+                foreach (var slot in onChargeSlotsBeingDeleted)
+                {
+                    var vehicle = await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle);
+
+                    await this.SendEmailToOnChargeSlotBeingDeleted(slot, apiKey, vehicle);
+                }
+            }
+        }
+
         private async Task<int> SendEmails(Slot leavingSlot)
         {
             var emailsSent = 0;
@@ -170,6 +194,27 @@ namespace OU.EV.Controllers
             return emailsSent;
         }
 
+        private async Task SendEmailToOnChargeSlotBeingDeleted(Slot deletingSlot, string apiKey, Vehicle vehicle)
+        {
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
+            var subject = $"Notice of On Charge deletingSlot being deleted your EV at {deletingSlot.Location.ToString()}";
+            //var to = new EmailAddress(vehicle.Email, vehicle.FullName);
+            var to = new EmailAddress("chris.garnett@open.ac.uk", vehicle.FullName);
+            var plainTextContent = $@"An old deletingSlot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.
+                        When you have finished charging please change the status of your deletingSlot so that other users waiting in the queue will receive
+                        an email letting them know that a space is now free.
+                        {@"http://ou-ev-web.azurewebsites.net/Slot"}
+                        Thanks.";
+            var htmlContent = $@"<p>An old deletingSlot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.</p>
+                        <p>When you have finished charging please change the status of your deletingSlot so that other users waiting in the queue will receive
+                        an email letting them know that a space is now free.</p>
+                        <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
+                        <p>Thanks.</p>";
+            var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
+            await client.SendEmailAsync(msg);
+        }
+
         private async Task SendEmailToWaitingVehicle(Slot leavingSlot, string apiKey, Vehicle activeVehicle, Vehicle leavingVehicle)
         {
             var client = new SendGridClient(apiKey);
@@ -182,7 +227,7 @@ namespace OU.EV.Controllers
                         This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}";
             var htmlContent = $@"<p>{leavingVehicle.FullName} has changed charging status at <bold>{leavingSlot.Location.ToString()}</bold> to <bold>{leavingSlot.Status.ToString()}</bold>.</p>
                         <p>Please check the waiting list on the website, you may be able to move your car into a waiting bay or put it on to charge.</p>
-                        <p >{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
+                        <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
                         <p>This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}</p>";
             var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
             await client.SendEmailAsync(msg);
