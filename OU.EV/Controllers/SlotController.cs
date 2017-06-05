@@ -205,13 +205,13 @@ namespace OU.EV.Controllers
             var subject = $"Notice of On Charge deletingSlot being deleted your EV at {deletingSlot.Location.ToString()}";
             //var to = new EmailAddress(vehicle.Email, vehicle.FullName);
             var to = new EmailAddress("chris.garnett@open.ac.uk", vehicle.FullName);
-            var plainTextContent = $@"An old deletingSlot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.
-                        When you have finished charging please change the status of your deletingSlot so that other users waiting in the queue will receive
+            var plainTextContent = $@"An old slot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.
+                        When you have finished charging please change the status of your slot so that other users waiting in the queue will receive
                         an email letting them know that a space is now free.
                         {@"http://ou-ev-web.azurewebsites.net/Slot"}
                         Thanks.";
-            var htmlContent = $@"<p>An old deletingSlot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.</p>
-                        <p>When you have finished charging please change the status of your deletingSlot so that other users waiting in the queue will receive
+            var htmlContent = $@"<p>An old slot for {vehicle.FullName} with a status of {deletingSlot.Status} has been deleted from location {deletingSlot.Location}.</p>
+                        <p>When you have finished charging please change the status of your slot so that other users waiting in the queue will receive
                         an email letting them know that a space is now free.</p>
                         <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
                         <p>Thanks.</p>";
@@ -226,10 +226,12 @@ namespace OU.EV.Controllers
             var subject = $"Notice of change of charging status for an EV at {leavingSlot.Location.ToString()}";
             var to = new EmailAddress(activeVehicle.Email, activeVehicle.FullName);
             var plainTextContent = $@"{leavingVehicle.FullName} has changed charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}.
+                        {leavingSlot.Message}
                         Please check the waiting list on the website, you may be able to move your car into a waiting bay or put it on to charge.
                         {@"http://ou-ev-web.azurewebsites.net/Slot"}
                         This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}";
             var htmlContent = $@"<p>{leavingVehicle.FullName} has changed charging status at <bold>{leavingSlot.Location.ToString()}</bold> to <bold>{leavingSlot.Status.ToString()}</bold>.</p>
+                        <p>{leavingSlot.Message}</p>
                         <p>Please check the waiting list on the website, you may be able to move your car into a waiting bay or put it on to charge.</p>
                         <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>
                         <p>This email has been sent to all EV owners who are on charge or waiting at {leavingSlot.Location.ToString()}</p>";
