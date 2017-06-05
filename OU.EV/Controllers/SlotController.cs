@@ -86,8 +86,12 @@ namespace OU.EV.Controllers
         {
             if (this.ModelState.IsValid)
             {
+                var currentSlot = await SlotRepository<Slot>.GetItemAsync(slot.Id);
                 await SlotRepository<Slot>.UpdateItemAsync(slot.Id, slot);
-                await SendEmails(slot);
+                if (currentSlot != null && currentSlot.Status != slot.Status)
+                {
+                    await this.SendEmails(slot);
+                }
                 return RedirectToAction("Index");
             }
 
