@@ -102,22 +102,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            if ($('#Status').val() === "30") {
+                $('#sectionDuration').show();
+            } else {
+                $('#sectionDuration').hide();
+            }
+        });
+
+        $('#Status').change(function () {
+            if ($(this).val() === "30") {
+                $('#sectionDuration').show();
+            } else {
+                $('#sectionDuration').hide();
+            }
+        });
+
+    </script>
 }
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        if ($('#Status').val() === '30') {
-            $('#sectionDuration').show();
-        } else {
-            $('#sectionDuration').hide();
-        }
-    });
-
-    $('#Status').change(function () {
-        if ($(this).val() === "30") {
-            $('#sectionDuration').hide();
-        } else {
-            $('#sectionDuration').show();
-        }
-    });
-</script>
