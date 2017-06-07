@@ -1,10 +1,12 @@
 ﻿@model OU.EV.Models.Slot
 
+<link href="~/Content/jquery.timepicker.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.timepicker.min.js"></script>
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Create</h2>
 
 
@@ -102,6 +104,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         $(document).ready(function () {
             if ($('#Status').val() === "30") {
@@ -109,6 +112,8 @@
             } else {
                 $('#sectionDuration').hide();
             }
+
+            $('#Arrival').timepicker();
         });
 
         $('#Status').change(function () {
@@ -118,6 +123,5 @@
                 $('#sectionDuration').hide();
             }
         });
-
     </script>
 }

@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Slot</h4>
         <hr />
@@ -76,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Arrival, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.EditorFor(model => model.Arrival, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.Arrival, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
@@ -110,4 +110,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            if ($('#Status').val() === "30") {
+                $('#sectionDuration').show();
+            } else {
+                $('#sectionDuration').hide();
+            }
+        });
+
+        $('#Status').change(function () {
+            if ($(this).val() === "30") {
+                $('#sectionDuration').show();
+            } else {
+                $('#sectionDuration').hide();
+            }
+        });
+    </script>
 }

@@ -78,6 +78,27 @@ namespace OU.EV.Controllers
             return View(slot);
         }
 
+        [ActionName("Edit")]
+        //[Authorize(Roles = "OU-EV-Users")]
+        public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var slot = await SlotRepository<Slot>.GetItemAsync(id);
+            if (slot == null)
+            {
+                return HttpNotFound();
+            }
+
+            slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            slot.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
+
+            return View(slot);
+        }
+
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
@@ -93,27 +114,6 @@ namespace OU.EV.Controllers
                     await this.SendEmails(slot);
                 }
                 return RedirectToAction("Index");
-            }
-
-            slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
-            slot.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
-
-            return View(slot);
-        }
-
-        [ActionName("Edit")]
-        //[Authorize(Roles = "OU-EV-Users")]
-        public async Task<ActionResult> EditAsync([Bind(Include = "Id")] string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var slot = await SlotRepository<Slot>.GetItemAsync(id);
-            if (slot == null)
-            {
-                return HttpNotFound();
             }
 
             slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
@@ -246,10 +246,10 @@ namespace OU.EV.Controllers
             var from = new EmailAddress("noreply@ouevweb.co.uk", "OU EV Charging Monitor");
             var subject = $"Thank you for updating your charging status at {leavingSlot.Location.ToString()} to {leavingSlot.Status.ToString()}";
             var to = new EmailAddress(leavingVehicle.Email, leavingVehicle.FullName);
-            var plainTextContent = $@"{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.
+            var plainTextContent = $@"{emailsSent} message{(emailsSent == 1 ? " has" : "s have")} been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.
                         Please remember to keep the web page updated next time you use the university's charging facilities.
                         {@"http://ou-ev-web.azurewebsites.net/Slot"}";
-            var htmlContent = $@"<p>{emailsSent} messages has/have been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.</p>
+            var htmlContent = $@"<p>{emailsSent} message{(emailsSent == 1 ? " has" : "s have")} been sent to EV owners who are on charge or waiting to charge at {leavingSlot.Location.ToString()}.</p>
                         <p>Please remember to keep the OU EV Charging Monitor slots page updated next time you use the university's charging facilities.</p>
                         <p>{@"http://ou-ev-web.azurewebsites.net/Slot"}</p>";
             var msg = MailHelper.CreateSingleEmail(@from, to, subject, plainTextContent, htmlContent);
