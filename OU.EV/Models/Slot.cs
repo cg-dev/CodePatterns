@@ -16,9 +16,11 @@ namespace OU.EV.Models
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "location")]
+        [Required]
         public string Location { get; set; }
 
         [JsonProperty(PropertyName = "vehicle")]
+        [Required]
         public string Vehicle { get; set; }
 
         [JsonProperty(PropertyName = "status")]

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Extensions\SelectListItemExtensions.cs" />
     <Compile Include="Models\Slot.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Status.cs" />

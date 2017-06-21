@@ -13,6 +13,9 @@ namespace OU.EV.Controllers
     using System.Collections.Generic;
 
     using AutoMapper;
+
+    using OU.EV.Extensions;
+
     using SendGrid.Helpers.Mail;
     using SendGrid;
 
@@ -53,8 +56,8 @@ namespace OU.EV.Controllers
             {
                 Arrival = now,
                 ChargeStartTime = now,
-                Vehicles = new SelectList((await VehicleRepository<Vehicle>.GetItemsAsync()).OrderBy(v => v.FullName), "Registration", "FullName"),
-                Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building")
+                Vehicles = (new SelectList((await VehicleRepository<Vehicle>.GetItemsAsync()).OrderBy(v => v.FullName), "Registration", "FullName")).InsertPleaseSelectItem(),
+                Locations = (new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building")).InsertPleaseSelectItem()
             };
             return View(slot);
         }
@@ -72,8 +75,8 @@ namespace OU.EV.Controllers
                 return RedirectToAction("Index");
             }
 
-            slot.Vehicles = new SelectList((await VehicleRepository<Vehicle>.GetItemsAsync()).OrderBy(v => v.FullName), "Registration", "FullName");
-            slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            slot.Vehicles = (new SelectList((await VehicleRepository<Vehicle>.GetItemsAsync()).OrderBy(v => v.FullName), "Registration", "FullName")).InsertPleaseSelectItem();
+            slot.Locations = (new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building")).InsertPleaseSelectItem();
 
             return View(slot);
         }
@@ -93,7 +96,8 @@ namespace OU.EV.Controllers
                 return HttpNotFound();
             }
 
-            slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            //slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            //slot.Locations.InsertPleaseSelectItem();
             slot.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
 
             return View(slot);
@@ -116,7 +120,8 @@ namespace OU.EV.Controllers
                 return RedirectToAction("Index");
             }
 
-            slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            //slot.Locations = new SelectList((await LocationRepository<Location>.GetItemsAsync()).OrderBy(l => l.Building), "Building", "Building");
+            //slot.Locations.InsertPleaseSelectItem();
             slot.EvOwner = (await VehicleRepository<Vehicle>.GetItemAsync(slot.Vehicle)).FullName;
 
             return View(slot);
