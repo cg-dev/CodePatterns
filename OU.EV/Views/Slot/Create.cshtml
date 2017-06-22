@@ -1,8 +1,5 @@
 ﻿@model OU.EV.Models.Slot
 
-<link href="~/Content/jquery.timepicker.css" rel="stylesheet" />
-<script src="~/Scripts/jquery.timepicker.min.js"></script>
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -114,8 +111,6 @@
             } else {
                 $('#sectionDuration').hide();
             }
-
-            $('#Arrival').timepicker();
         });
 
         $('#Status').change(function () {
