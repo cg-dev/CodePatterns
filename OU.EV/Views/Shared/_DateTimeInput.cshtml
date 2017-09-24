@@ -1,0 +1,9 @@
+﻿@model DateTime
+
+<div class='input-group date datetime'>
+    @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
+    <span class="input-group-addon glyphicon glyphicon-calendar">
+        @*<span class="glyphicon glyphicon-calendar"></span>*@
+    </span>
+</div>
+Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })

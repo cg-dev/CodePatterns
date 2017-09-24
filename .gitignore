@@ -165,3 +165,4 @@ testharness/web.config
 
 #*.dll
 #*.cache
+.vs/
