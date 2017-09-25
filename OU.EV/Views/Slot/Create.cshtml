@@ -66,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Arrival, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class='input-group date datetime'>
+                <div class='input-group datetime'>
                     @Html.EditorFor(model => model.Arrival, new { htmlAttributes = new { @class = "form-control", @placeholder = "DD/MM/YYYY HH:MM" } })
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -80,7 +80,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ChargeStartTime, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class='input-group date datetime'>
+                    <div class='input-group datetime'>
                         @Html.EditorFor(model => model.ChargeStartTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "DD/MM/YYYY HH:MM" } })
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -93,7 +93,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class='input-group date timeonly'>
+                    <div class='input-group timeonly'>
                         @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:MM" } })
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
@@ -127,6 +127,14 @@
                 $('#sectionDuration').hide();
             }
 
+            $('#Status').change(function () {
+                if ($(this).val() === "30") {
+                    $('#sectionDuration').show();
+                } else {
+                    $('#sectionDuration').hide();
+                }
+            });
+
             $('.datetime').datetimepicker({
                 locale: 'en-gb',
                 sideBySide: true,
@@ -135,7 +143,7 @@
 
             $('.timeonly').datetimepicker({
                 locale: 'en-gb',
-                format: 'LT',
+                format: 'hh:mm',
                 enabledHours: [0, 1, 2, 3, 4],
                 minDate: moment({ hour: 0, minute: 15 }),
                 maxDate: moment({ hour: 4, minute: 0 }),
@@ -143,12 +151,5 @@
             });
         });
 
-        $('#Status').change(function () {
-            if ($(this).val() === "30") {
-                $('#sectionDuration').show();
-            } else {
-                $('#sectionDuration').hide();
-            }
-        });
     </script>
 }
