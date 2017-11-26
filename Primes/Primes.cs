@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Primes
+﻿namespace Primes
 {
+    using System.Collections.Generic;
+
     public static class Primes
     {
         public static List<int> Generate(int number)
@@ -13,14 +9,12 @@ namespace Primes
             var result = new List<int>();
             var divisor = 2;
 
-            while (number > 1)
+            for (; number > 1; divisor++)
             {
-                for (; number % divisor == 0; divisor++)
+                for (; number % divisor == 0; number /= divisor)
                 {
                     result.Add(divisor);
-                    number /= divisor;
                 }
-                //divisor++;
             }
 
             return result;
