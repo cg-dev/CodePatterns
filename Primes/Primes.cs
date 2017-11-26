@@ -8,9 +8,22 @@ namespace Primes
 {
     public static class Primes
     {
-        public static int[] Generate(int value)
+        public static List<int> Generate(int number)
         {
-            return value == 1 ? new int[] { } : new int[] { 2 };
+            var result = new List<int>();
+            var divisor = 2;
+
+            while (number > 1)
+            {
+                for (; number % divisor == 0; divisor++)
+                {
+                    result.Add(divisor);
+                    number /= divisor;
+                }
+                //divisor++;
+            }
+
+            return result;
         }
     }
 }
