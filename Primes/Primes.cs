@@ -7,13 +7,20 @@
     {
         public static void Main()
         {
-            const int Number = 13122004;
+            var number = 13122004;
 
-            Console.WriteLine($"Prime factors for {Number}");
+            Console.WriteLine($"Prime factors for {number}");
+            Console.WriteLine($"==========================");
+            ShowList(Generate(number));
             Console.WriteLine($"==========================");
 
-            ShowList(Generate(Number));
+            number = 104729;
 
+            Console.WriteLine();
+            Console.WriteLine($"Prime factors for {number}");
+            Console.WriteLine($"==========================");
+            ShowList(Generate(number));
+            
             Console.WriteLine($"==========================");
             Console.WriteLine($"Press any key to continue.");
 

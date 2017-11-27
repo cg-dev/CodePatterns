@@ -20,6 +20,7 @@
         [TestCase(24, new int[] { 2, 2, 2, 3 })]
         [TestCase(27, new int[] { 3, 3, 3 })]
         [TestCase(49, new int[] { 7, 7 })]
+        [TestCase(90, new int[] { 2, 3, 3, 5 })]
         [TestCase(210, new int[] { 2, 3, 5, 7 })]
         [TestCase(256, new int[] { 2, 2, 2, 2, 2, 2, 2, 2 })]
         public void CallingGenerateWithAValueShouldReturnAListOfPrimeFactors(int number, int[] expectedFactors)
