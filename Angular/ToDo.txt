@@ -1,3 +1,0 @@
-﻿Replace ngRoute and $routeProvider
-Use ng-view
-https://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-2-isolate-scope
