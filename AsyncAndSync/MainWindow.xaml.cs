@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AsyncAndSync
 {
@@ -22,6 +12,8 @@ namespace AsyncAndSync
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,9 +21,26 @@ namespace AsyncAndSync
 
         private void executeSync_Click(object sender, RoutedEventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            resultsWindow.Text = string.Empty;
+            progressBar.Value = 0;
 
-            Run();
+            var watch = Stopwatch.StartNew();
+
+            ReportResults(SyncMethods.RunDownloadSync());
+
+            watch.Stop();
+
+            resultsWindow.Text += $"Total execution time: {watch.ElapsedMilliseconds}";
+        }
+
+        private void executeSyncInParallel_Click(object sender, RoutedEventArgs e)
+        {
+            resultsWindow.Text = string.Empty;
+            progressBar.Value = 0;
+
+            var watch = Stopwatch.StartNew();
+
+            ReportResults(SyncMethods.RunDownloadParallelSync());
 
             watch.Stop();
 
@@ -40,9 +49,25 @@ namespace AsyncAndSync
 
         private async void executeAsync_Click(object sender, RoutedEventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            resultsWindow.Text = string.Empty;
+            progressBar.Value = 0;
 
-            await RunAsync();
+            var progress = new Progress<ProgressReportModel>();
+            progress.ProgressChanged += ReportProgress;
+
+            var watch = Stopwatch.StartNew();
+
+            try
+            {
+                cancellationTokenSource.Dispose();
+                cancellationTokenSource = new CancellationTokenSource();
+                var results = await AsyncMethods.RunDownloadAsync(progress, cancellationTokenSource.Token);
+                ReportResults(results);
+            }
+            catch (OperationCanceledException)
+            {
+                resultsWindow.Text += $"The async download was cancelled {Environment.NewLine}";
+            }
 
             watch.Stop();
 
@@ -51,113 +76,41 @@ namespace AsyncAndSync
 
         private async void executeAsyncInParallel_Click(object sender, RoutedEventArgs e)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            resultsWindow.Text = string.Empty;
+            progressBar.Value = 0;
 
-            await RunAsyncInParallel();
+            var watch = Stopwatch.StartNew();
+
+            var results = await AsyncMethods.RunDownloadAsyncInParallel();
+
+            ReportResults(results);
 
             watch.Stop();
 
             resultsWindow.Text += $"Total execution time: {watch.ElapsedMilliseconds}";
         }
 
-        private void Run()
+        private void ReportProgress(object sender, ProgressReportModel e)
         {
-            var websites = GetTestWebsites();
-
-            foreach (var website in websites)
-            {
-                WebsiteDataModel websiteData = DownloadWebsite(website);
-                ReportWebsiteData(websiteData);
-            }
+            progressBar.Value = e.PercentageComplete;
+            ReportResults(e.WebsitesDownloaded);
         }
 
-        private async Task RunAsync()
+        private void cancelOperation_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var website in GetTestWebsites())
-            {
-                // this allows the UI to respond and be moved but the "await" means that it still does each call one after the other
-                // asynchronous calls made synchronously
-                WebsiteDataModel websiteData = await Task.Run(() => DownloadWebsite(website));
-
-                ReportWebsiteData(websiteData);
-            }
+            cancellationTokenSource.Cancel();
         }
 
-        private async Task RunAsyncInParallel()
+        private void ReportResults(List<WebsiteDataModel> results)
         {
-            var tasks = new List<Task<WebsiteDataModel>>();
-
-            foreach (var website in GetTestWebsites())
-            {
-                // this will fire off all of the tasks in quick succession
-                tasks.Add(DownloadWebsiteAsync(website));
-            }
-
-            // and wait for the slowest one to finish before continuing
-            var results = await Task.WhenAll(tasks);
+            resultsWindow.Text = string.Empty;
 
             foreach (var result in results)
             {
-                ReportWebsiteData(result);
+                resultsWindow.Text += $"{result.WebsiteUrl} downloaded: {result.WebsiteData.Length} characters in {result.ResponseTime} ms.{Environment.NewLine}";
             }
-        }
 
-        private WebsiteDataModel DownloadWebsite(string website)
-        {
-            WebClient client = new WebClient();
-
-            var watch = Stopwatch.StartNew();
-
-            WebsiteDataModel websiteData = new WebsiteDataModel
-            {
-                WebsiteUrl = website, 
-                WebsiteData = client.DownloadString(website)
-            };
-
-            watch.Stop();
-            websiteData.ResponseTime = watch.ElapsedMilliseconds;
-
-            return websiteData;
-        }
-
-        private async Task<WebsiteDataModel> DownloadWebsiteAsync(string website)
-        {
-            WebClient client = new WebClient();
-
-            var watch = Stopwatch.StartNew();
-
-            WebsiteDataModel websiteData = new WebsiteDataModel
-            {
-                WebsiteUrl = website, 
-                WebsiteData = await client.DownloadStringTaskAsync(website)
-            };
-
-            watch.Stop();
-            websiteData.ResponseTime = watch.ElapsedMilliseconds;
-
-            return websiteData;
-        }
-
-        private List<string> GetTestWebsites()
-        {
-            var testWebsites = new List<string>();
-
-            resultsWindow.Text = string.Empty;
-
-            testWebsites.Add("https://www.bbc.co.uk");
-            testWebsites.Add("https://www.codeproject.com");
-            testWebsites.Add("https://www.google.com");
-            testWebsites.Add("https://www.microsoft.com");
-            testWebsites.Add("http://www.open.ac.uk");
-            testWebsites.Add("https://www.stackoverflow.com");
-            testWebsites.Add("https://www.yahoo.com");
-
-            return testWebsites;
-        }
-
-        private void ReportWebsiteData(WebsiteDataModel websiteData)
-        {
-            resultsWindow.Text += $"{websiteData.WebsiteUrl} downloaded: {websiteData.WebsiteData.Length} characters in {websiteData.ResponseTime} ms.{Environment.NewLine} ";
+            progressBar.Value = 100;
         }
     }
 }

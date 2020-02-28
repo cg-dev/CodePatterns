@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AsyncAndSync"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="825" FontSize="16">
+        Title="MainWindow" Height="750" Width="825" FontSize="16" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
 <Grid.RowDefinitions>
     <RowDefinition Height="Auto" />
@@ -13,14 +13,19 @@
     <RowDefinition Height="Auto" />
     <RowDefinition Height="Auto" />
     <RowDefinition Height="Auto" />
+    <RowDefinition Height="Auto" />
+    <RowDefinition Height="Auto" />
     <RowDefinition Height="*" />
 </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Margin="10 0" FontSize="28">
+        <TextBlock Grid.Row="0" Margin="10 0" FontSize="28">
             Simple Async Demo App
         </TextBlock>
-        <Button x:Name="executeSync" Grid.Row="2" Margin="10" Padding="10" Click="executeSync_Click">Normal Execute</Button>
+        <Button x:Name="executeSync" Grid.Row="1" Margin="10" Padding="10" Click="executeSync_Click">Sync Execute</Button>
+        <Button x:Name="executeSyncInParallel" Grid.Row="2" Margin="10" Padding="10" Click="executeSyncInParallel_Click">Sync in Parallel Execute</Button>
         <Button x:Name="executeAsync" Grid.Row="3" Margin="10" Padding="10" Click="executeAsync_Click">Async Execute</Button>
         <Button x:Name="executeAsyncInParallel" Grid.Row="4" Margin="10" Padding="10" Click="executeAsyncInParallel_Click">Async in Parallel Execute</Button>
-        <TextBlock x:Name="resultsWindow" Grid.Row="5" Margin="10" />
+        <Button x:Name="cancelOperation" Grid.Row="5" Margin="10" Padding="10" Click="cancelOperation_Click">Cancel Operation</Button>
+        <ProgressBar x:Name="progressBar" Grid.Row="6" Value="0" Height="15" Margin="10"></ProgressBar>
+        <TextBlock x:Name="resultsWindow" Grid.Row="7" Margin="10" />
     </Grid>
 </Window>
