@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Primes", "Primes\Primes.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Async", "Async\Async.csproj", "{8483A819-3784-441E-9ED1-3553D7C4A581}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAndSync", "AsyncAndSync\AsyncAndSync.csproj", "{A751A589-E615-4561-9CC2-6ED51F80AF8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -270,6 +272,18 @@ Global
 		{8483A819-3784-441E-9ED1-3553D7C4A581}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8483A819-3784-441E-9ED1-3553D7C4A581}.Release|x86.ActiveCfg = Release|Any CPU
 		{8483A819-3784-441E-9ED1-3553D7C4A581}.Release|x86.Build.0 = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A751A589-E615-4561-9CC2-6ED51F80AF8D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
