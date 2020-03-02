@@ -12,7 +12,7 @@ namespace AsyncAndSync
             var testWebsites = CommonMethods.GetTestWebsites();
             var output = new List<WebsiteDataModel>();
 
-            // run each step one at a time
+            // run each step one after the other
             foreach(var website in testWebsites)
             {
                 var result = DownloadWebsite(website);
@@ -27,7 +27,7 @@ namespace AsyncAndSync
             var testWebsites = CommonMethods.GetTestWebsites();
             var results = new List<WebsiteDataModel>();
 
-            // run all at the same time synchronously so everything is locked until they are all done
+            // run all at the same time synchronously so everything is locked until they are all done but only for the time that the slowest one takes
             Parallel.ForEach<string>(testWebsites, (website) =>
             {
                 var result = DownloadWebsite(website);

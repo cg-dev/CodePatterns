@@ -65,7 +65,6 @@ namespace AsyncAndSync
                 cancellationTokenSource.Dispose();
                 cancellationTokenSource = new CancellationTokenSource();
                 var results = await AsyncMethods.RunDownloadAsync(progress, cancellationTokenSource.Token);
-                ReportResults(results);
             }
             catch (OperationCanceledException)
             {
