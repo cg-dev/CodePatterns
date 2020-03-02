@@ -22,6 +22,7 @@ namespace AsyncAndSync
         private void executeSync_Click(object sender, RoutedEventArgs e)
         {
             resultsWindow.Text = string.Empty;
+            resultsWindow.Refresh();
             progressBar.Value = 0;
 
             var watch = Stopwatch.StartNew();
@@ -36,6 +37,7 @@ namespace AsyncAndSync
         private void executeSyncInParallel_Click(object sender, RoutedEventArgs e)
         {
             resultsWindow.Text = string.Empty;
+            resultsWindow.Refresh();
             progressBar.Value = 0;
 
             var watch = Stopwatch.StartNew();
@@ -50,6 +52,7 @@ namespace AsyncAndSync
         private async void executeAsync_Click(object sender, RoutedEventArgs e)
         {
             resultsWindow.Text = string.Empty;
+            resultsWindow.Refresh();
             progressBar.Value = 0;
 
             var progress = new Progress<ProgressReportModel>();
@@ -77,6 +80,7 @@ namespace AsyncAndSync
         private async void executeAsyncInParallel_Click(object sender, RoutedEventArgs e)
         {
             resultsWindow.Text = string.Empty;
+            resultsWindow.Refresh();
             progressBar.Value = 0;
 
             var watch = Stopwatch.StartNew();
